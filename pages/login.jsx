@@ -143,7 +143,7 @@ export const getServerSideProps = async (ctx) => {
         return {
             redirect: {
                 permanent: false,
-                destination: "/",
+                destination: "https://kaito-shop.vercel.app",
             },
         };
     }
