@@ -217,7 +217,7 @@ export const getStaticProps = async (context) => {
     };
 };
 
-export const getStaticPaths = async (context) => {
+export const getStaticPaths = async () => {
     return {
         paths: [],
         fallback: "blocking",
