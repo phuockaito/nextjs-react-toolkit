@@ -19,16 +19,22 @@ export const useAuth = (options) => {
         await mutate();
     };
 
+    const handleGoogleLogin = async (tokenId) => {
+        await apiAccount.googleLogin(tokenId);
+        window.location.reload();
+    };
+
     const handleLogout = async () => {
         await apiAccount.logout()
         mutate(null, false);
     };
 
     return {
-        profile: profile?.user,
-        error,
         handleLogin,
         handleLogout,
+        handleGoogleLogin,
+        profile: profile?.user,
+        error,
         firstLoading,
     }
 }

@@ -15,5 +15,9 @@ export const apiAccount = {
     register: (data) => {
         const url = "user/register";
         return axiosClient.post(url, data);
-    }
+    },
+    googleLogin: (tokenId) => {
+        const url = "user/google-login";
+        return axiosClient.post(url, tokenId);
+    },
 };
