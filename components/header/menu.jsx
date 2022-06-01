@@ -8,6 +8,7 @@ import { Input } from "@/layout";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { BiLogIn } from "react-icons/bi";
 import { useAuth } from "@/hooks";
+import { Search } from "./search";
 
 export const Menu = () => {
     const { data, error } = useSWR("/menu", {
@@ -81,15 +82,8 @@ export const Menu = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex gap-6 items-center">
-                        <Input
-                            className="w-64"
-                            placeholder="Search for anything..."
-                            type="text"
-                            name="search"
-                            size="md"
-                        />
-
+                    <div className="flex gap-4 items-center">
+                        <Search />
                         {profile ? (
                             <div className="flex gap-4 items-center">
                                 <AiOutlineShoppingCart className="text-[#6e6d7a] text-[1.2rem]" />
@@ -109,7 +103,7 @@ export const Menu = () => {
                         ) : (
                             <div className="flex gap-4 items-center">
                                 <LinkHref
-                                    className="text-[#6e6d7a] hover:text-white px-6 py-2 border border-white hover:border-[#4058ff] rounded-[0.25rem] hover:bg-[#4058ff]"
+                                    className="px-6 py-2 bg-[#4058ff] text-white rounded-[0.25rem] border border-[#4058ff] hover:bg-white hover:text-[#4058ff]"
                                     href="/login"
                                 >
                                     Login

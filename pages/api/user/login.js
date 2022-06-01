@@ -19,14 +19,13 @@ export default function handler(req, res) {
             proxyRes.on('data', (chunk) => body += chunk);
             proxyRes.on('end', async () => {
                 try {
-                    const { message, accessToken, user } = JSON.parse(body);
+                    const { message, accessToken } = JSON.parse(body);
                     if (!accessToken) return res.status(400).json({ message: message });
                     const cookies = new Cookies(req, res, { secure: process.env.NODE_ENV !== 'development' });
                     cookies.set('access_token', accessToken, {
                         httpOnly: true,
                         sameSite: 'lax',
                     });
-                    // res.status(200).json({ ...user });
                     res.status(200).json({
                         message: 'login successful',
                     });

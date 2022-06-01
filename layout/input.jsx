@@ -17,6 +17,9 @@ export const Input = ({
     validateOptions,
     errors,
     showIconPassword,
+    props,
+    iconSubmit,
+    defaultValue,
 }) => {
     const [textType, setTextType] = React.useState(type);
 
@@ -31,11 +34,21 @@ export const Input = ({
                 </span>
             )}
             <div className="relative flex flex-col">
-                <div className="absolute inset-y-0 left-1 flex h-full items-center pl-2 w-8">
-                    <Icon className="text-slate-500" />
-                </div>
+                {iconSubmit ? (
+                    <div className="absolute inset-y-0 left-1 flex h-full items-center pl-2 w-8">
+                        <button>
+                            <Icon className="text-slate-500" />
+                        </button>
+                    </div>
+                ) : (
+                    <div className="absolute inset-y-0 left-1 flex h-full items-center pl-2 w-8">
+                        <Icon className="text-slate-500" />
+                    </div>
+                )}
+
                 {validate ? (
                     <input
+                        {...props}
                         className={clsx(
                             "text-[#495057] placeholder:text-[#74788d] block placeholder:text-[13px] bg-white w-full border border-[#ced4da] rounded-[0.25rem] px-8 shadow-sm focus:outline-none focus:border-[#ced4da] focus:ring-[#ced4da] focus:ring-1",
                             inputClassName,
@@ -45,9 +58,11 @@ export const Input = ({
                         {...validate(name, { ...validateOptions })}
                         placeholder={placeholder}
                         type={textType}
+                        defaultValue={defaultValue}
                     />
                 ) : (
                     <input
+                        {...props}
                         className={clsx(
                             "text-[#495057] placeholder:text-[#74788d] block placeholder:text-[13px] bg-white w-full border border-[#ced4da] rounded-[0.25rem] pl-8 pr-3 shadow-sm focus:outline-none focus:border-[#ced4da] focus:ring-[#ced4da] focus:ring-1",
                             inputClassName,

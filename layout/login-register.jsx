@@ -51,10 +51,10 @@ export const LoginRegister = ({
                             </p>
                         )}
                         <div className="flex gap-2 items-center justify-center">
-                            <div className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-full bg-[#556ee6]">
+                            <div className="w-8 h-8 cursor-not-allowed flex items-center justify-center rounded-full bg-[#556ee6]">
                                 <BsFacebook className="text-white" />
                             </div>
-                            <div className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-full bg-[#50a5f1]">
+                            <div className="w-8 h-8 cursor-not-allowed flex items-center justify-center rounded-full bg-[#50a5f1]">
                                 <BsTwitter className="text-white" />
                             </div>
                             <div className="w-8 h-8 cursor-pointer flex items-center justify-center rounded-full bg-[#f46a6a]">

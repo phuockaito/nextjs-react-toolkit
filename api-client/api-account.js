@@ -12,8 +12,8 @@ export const apiAccount = {
         const url = "user/logout";
         return axiosClient.post(url);
     },
-    register: () => {
+    register: (data) => {
         const url = "user/register";
-        return axiosClient.post(url);
+        return axiosClient.post(url, data);
     }
 };

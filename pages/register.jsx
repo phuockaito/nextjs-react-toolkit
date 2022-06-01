@@ -2,11 +2,13 @@ import * as React from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import clsx from "clsx";
 
 import { Button, Input, LoginRegister } from "@/layout";
 import { VscLock } from "react-icons/vsc";
 import { HiOutlineMail } from "react-icons/hi";
 import { MetaTag } from "@/customize";
+import { apiAccount } from "@/api-client";
 
 import {
     defaultURL,
@@ -45,13 +47,38 @@ const Register = () => {
     const {
         register,
         handleSubmit,
+        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     });
+    const [infoLogin, setInfoLogin] = React.useState({
+        message: null,
+        loading: false,
+        isSuccess: false,
+    });
 
-    const onSubmit = (data) => {
-        console.log({ data });
+    const onSubmit = async (data) => {
+        setInfoLogin({
+            message: null,
+            loading: true,
+            isSuccess: false,
+        });
+        try {
+            const { message } = await apiAccount.register(data);
+            setInfoLogin({
+                message: message,
+                loading: false,
+                isSuccess: true,
+            });
+            reset();
+        } catch (error) {
+            setInfoLogin({
+                message: error.response.data.message,
+                loading: false,
+                isSuccess: false,
+            });
+        }
     };
 
     return (
@@ -73,7 +100,7 @@ const Register = () => {
                 description_page="Bạn đã có tài khoản đăng nhập ngay ?"
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex flex-col gap-3 w-full">
+                    <div className="flex flex-col gap-3 w-full relative">
                         <Input
                             type="text"
                             Icon={HiOutlineMail}
@@ -124,7 +151,23 @@ const Register = () => {
                             errors={errors && errors.confirm_password?.message}
                             showIconPassword
                         />
-                        <Button label="Đăng ký" className="mt-3" />
+                        {infoLogin.message && (
+                            <p
+                                className={clsx(
+                                    "text-[0.8rem] absolute text-center w-full font-medium",
+                                    infoLogin.isSuccess
+                                        ? "text-[#18aa01]"
+                                        : "text-[#f46a6a]"
+                                )}
+                            >
+                                {infoLogin.message}
+                            </p>
+                        )}
+                        <Button
+                            label="Đăng ký"
+                            className="mt-3"
+                            loading={infoLogin.loading}
+                        />
                     </div>
                 </form>
             </LoginRegister>
