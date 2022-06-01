@@ -138,10 +138,6 @@ const Login = () => {
 export default Login;
 
 export const getServerSideProps = async (context) => {
-    context.res.setHeader(
-        "Cache-Control",
-        "s-maxage=59,stale-while-revalidate=59"
-    );
     const access_token = context.req.cookies.access_token || null;
 
     if (access_token) {
