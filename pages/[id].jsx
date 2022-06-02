@@ -21,7 +21,7 @@ const DetailId = ({ data, productPropose, id }) => {
     const [size, setSize] = React.useState(null);
     const { dataComment } = useComment(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
     const { handleAddToCartReducers } = useCart();
-    console.log("size", size);
+
 
     const createMarkup = () => {
         return { __html: data.description };

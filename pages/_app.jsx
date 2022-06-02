@@ -7,6 +7,7 @@ import { axiosClient } from "@/api-client";
 import { wrapper } from "app";
 import { AppWrapper } from "@/context";
 import "antd/dist/antd.css";
+
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
