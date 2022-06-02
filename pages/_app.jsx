@@ -6,8 +6,7 @@ import { SWRConfig } from "swr";
 import { axiosClient } from "@/api-client";
 import { wrapper } from "app";
 import { AppWrapper } from "@/context";
-
-require("../styles/variables.less");
+import 'antd/dist/antd.css';
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
