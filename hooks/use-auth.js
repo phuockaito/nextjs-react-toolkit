@@ -31,10 +31,13 @@ export const useAuth = (options) => {
         mutate(null, false);
     };
 
+    const handleChangePassword = React.useCallback((password) => password && apiAccount.changePassword(password), []);
+
     return {
         handleLogin,
         handleLogout,
         handleGoogleLogin,
+        handleChangePassword,
         profile: profile?.user,
         error,
         firstLoading,

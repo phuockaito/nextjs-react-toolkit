@@ -52,7 +52,7 @@ const Login = () => {
             await handleLogin(data);
             setInfoLogin({
                 messageError: null,
-                loadingLogin: false,
+                loadingLogin: true,
             });
             router.replace("/");
         } catch (error) {
@@ -85,6 +85,7 @@ const Login = () => {
                 <form onSubmit={handleSubmit(submitLogin)}>
                     <div className="flex flex-col gap-3 w-full relative">
                         <Input
+                            size="md"
                             name="email"
                             type="email"
                             Icon={HiOutlineMail}
@@ -97,6 +98,7 @@ const Login = () => {
                             errors={errors && errors.email?.message}
                         />
                         <Input
+                            size="md"
                             name="password"
                             type="password"
                             Icon={VscLock}

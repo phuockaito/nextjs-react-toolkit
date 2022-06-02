@@ -93,6 +93,7 @@ const Register = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="flex flex-col gap-3 w-full relative">
                         <Input
+                            size="md"
                             type="text"
                             Icon={HiOutlineMail}
                             label="Họ và tên"
@@ -105,6 +106,7 @@ const Register = () => {
                             errors={errors && errors.username?.message}
                         />
                         <Input
+                            size="md"
                             name="email"
                             type="email"
                             Icon={HiOutlineMail}
@@ -117,6 +119,7 @@ const Register = () => {
                             errors={errors && errors.email?.message}
                         />
                         <Input
+                            size="md"
                             name="password"
                             type="password"
                             Icon={VscLock}
@@ -130,6 +133,7 @@ const Register = () => {
                             showIconPassword
                         />
                         <Input
+                            size="md"
                             name="confirm_password"
                             type="password"
                             Icon={VscLock}

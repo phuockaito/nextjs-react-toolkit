@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Dropdown, Modal, message } from "antd";
+import { Dropdown, Modal, message, Badge } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
@@ -9,8 +9,8 @@ import { Image } from "@/customize";
 import { VscSignOut, VscLock } from "react-icons/vsc";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Button, Input } from "@/layout";
-import { useAuth } from "@/hooks";
-import { apiAccount } from "@/api-client";
+import { useAuth, useCart } from "@/hooks";
+import { HiOutlineMail } from "react-icons/hi";
 
 const schema = yup.object().shape({
     password: yup
@@ -28,35 +28,54 @@ const schema = yup.object().shape({
         .oneOf([yup.ref("password")], "Mật khẩu nhập không khớp !"),
 });
 
-export const Profile = ({ avatar, name }) => {
+
+export const Profile = ({ avatar, name, email }) => {
+    const { storeCart } = useCart();
+    console.log('storeCart.dataCart',storeCart.dataCart)
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
     });
-    const { handleLogout } = useAuth();
+    const { handleLogout, handleChangePassword } = useAuth();
     const [isModalVisible, setIsModalVisible] = React.useState(false);
+    const [loading, setLoading] = React.useState(false);
 
-    const handleChagePassword = async (data) => {
+    const onSubmitChangePassword = async (data) => {
+        setLoading(true);
         try {
-            await apiAccount.changePassword(data);
+            await handleChangePassword(data);
             message.success("Đã lưu thay đổi mật khẩu");
+            setLoading(false);
+            setIsModalVisible(false);
         } catch (error) {
             message.error("Có lỗi xãi ra");
+            setLoading(false);
         }
     };
     return (
         <>
             <div className="flex gap-4 items-center">
-                <AiOutlineShoppingCart className="text-[#6e6d7a] text-[1.2rem]" />
+                <Badge count={storeCart.dataCart.length}>
+                    <AiOutlineShoppingCart className="text-[#6e6d7a] text-[1.2rem]" />
+                </Badge>
                 <Dropdown
                     trigger={["click"]}
                     overlay={() => (
                         <div className="py-2 shadow-dropdown-menu bg-white rounded-[0.25rem] relative top-[1rem]">
-                            <div className="w-[215px]">
+                            <div className="w-[250px]">
+                                <div
+                                    className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]"
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(email);
+                                        message.success("Đã copy Email");
+                                    }}
+                                >
+                                    <HiOutlineMail className="text-[1rem]" />
+                                    <h1 className="truncate">{email}</h1>
+                                </div>
                                 <div className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]">
                                     <AiOutlineShoppingCart className="text-[1rem]" />
                                     <h1>Lịch sử mua hàng</h1>
@@ -98,10 +117,12 @@ export const Profile = ({ avatar, name }) => {
                 visible={isModalVisible}
                 onOk={() => setIsModalVisible(false)}
                 onCancel={() => setIsModalVisible(false)}
+                centered
             >
-                <form onSubmit={handleSubmit(handleChagePassword)}>
+                <form onSubmit={handleSubmit(onSubmitChangePassword)}>
                     <div className="flex flex-col gap-3 w-full relative">
                         <Input
+                            size="md"
                             name="password"
                             type="password"
                             Icon={VscLock}
@@ -115,6 +136,7 @@ export const Profile = ({ avatar, name }) => {
                             showIconPassword
                         />
                         <Input
+                            size="md"
                             name="confirm_password"
                             type="password"
                             Icon={VscLock}
@@ -127,7 +149,7 @@ export const Profile = ({ avatar, name }) => {
                             errors={errors && errors.confirm_password?.message}
                             showIconPassword
                         />
-                        <Button label="Lưu mật khẩu" className="mt-3" />
+                        <Button label="Lưu mật khẩu" className="mt-3" loading={loading} />
                     </div>
                 </form>
             </Modal>

@@ -1,6 +1,8 @@
 import * as React from "react";
 import { useRouter } from "next/router";
 import NumberFormat from "react-number-format";
+import clsx from "clsx";
+import { message } from "antd";
 
 import { apiProduct } from "@/api-client";
 import { MetaTag, Image, LinkHref } from "@/customize";
@@ -9,14 +11,17 @@ import { WrapperComment, Header } from "@/components";
 
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
-import { useComment } from "@/hooks";
+import { useComment, useCart } from "@/hooks";
 
 const DetailId = ({ data, productPropose, id }) => {
     const router = useRouter();
     const _page_comment = router.query?._page_comment || 1;
 
     const [poster, setPoster] = React.useState(0);
+    const [size, setSize] = React.useState(null);
     const { dataComment } = useComment(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
+    const { handleAddToCartReducers } = useCart();
+    console.log("size", size);
 
     const createMarkup = () => {
         return { __html: data.description };
@@ -115,7 +120,11 @@ const DetailId = ({ data, productPropose, id }) => {
                                     {data.size.map((sz) => (
                                         <p
                                             key={sz}
-                                            className="cursor-pointer w-6 h-6 flex items-center justify-center p-1 bg-[#ff8b05] rounded text-white"
+                                            className={clsx(
+                                                "cursor-pointer w-6 h-6 flex items-center justify-center p-1 rounded text-white hover:bg-[#4058ff]",
+                                                Number(size) === Number(sz) ? "bg-[#4058ff]" : "bg-[#ff8b05]"
+                                            )}
+                                            onClick={() => setSize(sz)}
                                         >
                                             {sz}
                                         </p>
@@ -131,7 +140,27 @@ const DetailId = ({ data, productPropose, id }) => {
                                 </span>
                                 <p>đ</p>
                             </h3>
-                            <button className="bg-[#212427] border border-[#212427] text-white hover:text-[#212427] hover:bg-white px-2 py-1 font-light rounded-[0.25rem]">
+                            <button
+                                className="bg-[#212427] border border-[#212427] text-white hover:text-[#212427] hover:bg-white px-2 py-1 font-light rounded-[0.25rem]"
+                                onClick={() => {
+                                    if (size) {
+                                        handleAddToCartReducers({
+                                            product: {
+                                                _id: data._id,
+                                                name: data.name,
+                                                image: data.poster[0].url,
+                                                price: data.price,
+                                                key: data.key,
+                                                NSX: data.NSX,
+                                                collections: data.collections,
+                                            },
+                                            quantily: size,
+                                        });
+                                    } else {
+                                        message.error("Vui lòng chọn size");
+                                    }
+                                }}
+                            >
                                 Add to card
                             </button>
                         </div>

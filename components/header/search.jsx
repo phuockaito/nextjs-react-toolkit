@@ -7,7 +7,6 @@ import { Input } from "@/layout";
 export const Search = () => {
     const router = useRouter();
     const { register, handleSubmit } = useForm();
-    console.log("router", router);
 
     const submitSearch = ({ search }) => {
         console.log("search", search);
