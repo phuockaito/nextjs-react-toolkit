@@ -35,10 +35,10 @@ button {
     font-weight: 500;
     line-height: 1.2;
     font-size: 0.938rem;
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 p {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 body {
