@@ -32,33 +32,17 @@ export const LoginRegister = ({
         <div className="flex min-h-screen overflow-y-hidden">
             <div className="basis-9/12 bg-[#d4dbf9] relative">
                 <div className="absolute left-0 top-0">
-                    <Image
-                        src={BackgroundLogin.src}
-                        alt=""
-                        className="w-full h-full"
-                    />
+                    <Image src={BackgroundLogin.src} alt="" className="w-full h-full" />
                 </div>
             </div>
             <div className="basis-3/12 bg-white p-12">
                 <div className="flex flex-col">
                     <LinkHref href="/" className="flex mb-6 justify-center">
-                        <Image
-                            src={IconLogo.src}
-                            alt=""
-                            className="w-40 h-14"
-                        />
+                        <Image src={IconLogo.src} alt="" className="w-40 h-14" />
                     </LinkHref>
                     <div className="my-20">
-                        {title && (
-                            <h6 className="mb-2 text-[1.015625rem] text-[#556ee6]">
-                                {title}
-                            </h6>
-                        )}
-                        {description && (
-                            <p className="mb-5 text-[#74788d] text-[0.85rem]">
-                                {description}
-                            </p>
-                        )}
+                        {title && <h6 className="mb-2 text-[1.015625rem] text-[#556ee6]">{title}</h6>}
+                        {description && <p className="mb-5 text-[#74788d] text-[0.85rem]">{description}</p>}
                         {children}
                         {title_sign_connect && (
                             <p className="text-[#495057] font-medium text-[14px] text-center my-4">
@@ -98,10 +82,7 @@ export const LoginRegister = ({
                         </div>
                         <p className="text-center text-[#74788d] text-[0.85rem] mt-12">
                             {description_page}
-                            <LinkHref
-                                href={url_page}
-                                className="text-[#556ee6] ml-2"
-                            >
+                            <LinkHref href={url_page} className="text-[#556ee6] ml-2">
                                 {title_url_page}
                             </LinkHref>
                         </p>

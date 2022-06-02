@@ -1,4 +1,4 @@
-import * as React from 'react';
+import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { selectMenu } from "@/selector";
@@ -10,9 +10,8 @@ export const useMenu = () => {
 
     const handleGetMenu = React.useCallback(() => dispatch(onGetMenu()), [dispatch]);
 
-
     return {
         handleGetMenu,
         storeMenu,
-    }
+    };
 };

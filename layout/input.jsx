@@ -23,16 +23,11 @@ export const Input = ({
 }) => {
     const [textType, setTextType] = React.useState(type);
 
-    const IconShowPassword =
-        textType === "text" ? IoEyeOutline : IoEyeOffOutline;
+    const IconShowPassword = textType === "text" ? IoEyeOutline : IoEyeOffOutline;
 
     return (
         <div className={className}>
-            {label && (
-                <span className="block mb-2 text-sm font-medium text-[#495057]">
-                    {label}
-                </span>
-            )}
+            {label && <span className="block mb-2 text-sm font-medium text-[#495057]">{label}</span>}
             <div className="relative flex flex-col">
                 {iconSubmit ? (
                     <div className="absolute inset-y-0 left-1 flex h-full items-center pl-2 w-8">
@@ -77,18 +72,12 @@ export const Input = ({
                     <div className="absolute inset-y-0 right-1 flex h-full items-center w-8 pl-2">
                         <IconShowPassword
                             className="text-slate-500 cursor-pointer"
-                            onClick={() =>
-                                setTextType(
-                                    textType === "text" ? "password" : "text"
-                                )
-                            }
+                            onClick={() => setTextType(textType === "text" ? "password" : "text")}
                         />
                     </div>
                 )}
             </div>
-            {errors && (
-                <p className="text-[#f46a6a] text-[0.8rem] mt-1">{errors}</p>
-            )}
+            {errors && <p className="text-[#f46a6a] text-[0.8rem] mt-1">{errors}</p>}
         </div>
     );
 };

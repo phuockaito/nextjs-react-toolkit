@@ -4,6 +4,6 @@ export const useComment = (url) => {
     const { data } = useSWR(url);
 
     return {
-        dataComment: data
+        dataComment: data,
     };
 };

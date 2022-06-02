@@ -6,6 +6,7 @@ import { SWRConfig } from "swr";
 import { axiosClient } from "@/api-client";
 import { wrapper } from "app";
 import { AppWrapper } from "@/context";
+import "antd/dist/antd.css";
 import "../styles/globals.css";
 
 function MyApp({ Component, pageProps }) {
@@ -28,9 +29,7 @@ function MyApp({ Component, pageProps }) {
                     shouldRetryOnError: false,
                 }}
             >
-                <AppWrapper>
-                    {getLayout(<Component {...pageProps} />)}
-                </AppWrapper>
+                <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
             </SWRConfig>
         </React.Fragment>
     );

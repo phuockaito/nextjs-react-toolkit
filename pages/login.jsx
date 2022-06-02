@@ -11,19 +11,10 @@ import { useAuth } from "@/hooks";
 import { VscLock } from "react-icons/vsc";
 import { HiOutlineMail } from "react-icons/hi";
 
-import {
-    defaultURL,
-    defaultDescription,
-    defaultContent,
-    defaultThumbnail,
-    defaultKeyword,
-} from "const";
+import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const schema = yup.object().shape({
-    email: yup
-        .string()
-        .email("Email không họp lệ")
-        .required("Vui lòng nhập email của bạn!"),
+    email: yup.string().email("Email không họp lệ").required("Vui lòng nhập email của bạn!"),
     password: yup
         .string()
         .required("Vui lòng nhập mật khẩu của bạn!")
@@ -123,11 +114,7 @@ const Login = () => {
                                 {infoLogin.messageError}
                             </p>
                         )}
-                        <Button
-                            loading={infoLogin.loadingLogin}
-                            className="mt-3"
-                            label="Đăng nhập"
-                        />
+                        <Button loading={infoLogin.loadingLogin} className="mt-3" label="Đăng nhập" />
                     </div>
                 </form>
             </LoginRegister>

@@ -16,5 +16,5 @@ export const apiProduct = {
     getProductType: (params) => {
         const url = "/products/type";
         return axiosClient.get(url, { params });
-    }
-}
+    },
+};

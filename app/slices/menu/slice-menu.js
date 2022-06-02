@@ -1,15 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 import { onGetMenu } from "./path-api";
 
 export const sliceMenu = createSlice({
-    name: 'menu',
+    name: "menu",
     initialState: {
         dataMenu: null,
         isLoading: true,
     },
-    reducers: {
-
-    },
+    reducers: {},
     extraReducers: {
         [onGetMenu.pending]: (state, action) => {
             state.isLoading = true;
@@ -18,7 +16,7 @@ export const sliceMenu = createSlice({
             state.dataMenu = action.payload;
             state.isLoading = false;
         },
-    }
+    },
 });
 const { reducer } = sliceMenu;
 export default reducer;

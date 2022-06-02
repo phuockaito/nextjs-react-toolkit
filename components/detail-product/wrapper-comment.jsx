@@ -5,12 +5,7 @@ import NoSSR from "react-no-ssr";
 import { Section } from "@/layout";
 import { CardComment } from "./card-comment";
 
-export const WrapperComment = ({
-    dataComment,
-    _id_product,
-    count_comments,
-    _page_comment,
-}) => {
+export const WrapperComment = ({ dataComment, _id_product, count_comments, _page_comment }) => {
     const router = useRouter();
     return (
         <React.Fragment>
@@ -31,10 +26,7 @@ export const WrapperComment = ({
                                                 {
                                                     pathname: _id_product,
                                                     query: {
-                                                        _page_comment:
-                                                            (Number(
-                                                                _page_comment
-                                                            ) || 1) + 1,
+                                                        _page_comment: (Number(_page_comment) || 1) + 1,
                                                     },
                                                 },
                                                 undefined,

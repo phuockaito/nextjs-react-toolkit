@@ -24,10 +24,7 @@ export const CardComment = ({ dataComment }) => {
                                     {comment.name}
                                     <p className="text-[#5d6488] font-normal text-[0.9rem] flex gap-1">
                                         {moment(comment.timeComment).fromNow()}
-                                        <span className="text-[0.9rem]">
-                                            {comment.editComment &&
-                                                "(đã chỉnh sửa)"}
-                                        </span>
+                                        <span className="text-[0.9rem]">{comment.editComment && "(đã chỉnh sửa)"}</span>
                                     </p>
                                 </h3>
                                 <div>
@@ -41,9 +38,7 @@ export const CardComment = ({ dataComment }) => {
                                     />
                                 </div>
                             </div>
-                            <span className="text-[1rem]">
-                                {comment.content}
-                            </span>
+                            <span className="text-[1rem]">{comment.content}</span>
                             {comment?.reply && (
                                 <div>
                                     <CardComment dataComment={comment?.reply} />

@@ -4,10 +4,7 @@ export const Coating = ({ onClick, className, children, isClose }) => {
     return (
         <div
             onClick={onClick}
-            className={clsx(
-                "fixed top-0 left-0 bottom-0 right-0 z-[1] h-full w-full bg-[#00000061]",
-                className
-            )}
+            className={clsx("fixed top-0 left-0 bottom-0 right-0 z-[1] h-full w-full bg-[#00000061]", className)}
         >
             {isClose && (
                 <div className="fixed right-0 p-3">

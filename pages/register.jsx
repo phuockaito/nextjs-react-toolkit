@@ -10,13 +10,7 @@ import { HiOutlineMail } from "react-icons/hi";
 import { MetaTag } from "@/customize";
 import { apiAccount } from "@/api-client";
 
-import {
-    defaultURL,
-    defaultDescription,
-    defaultContent,
-    defaultThumbnail,
-    defaultKeyword,
-} from "const";
+import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const schema = yup.object().shape({
     username: yup
@@ -25,10 +19,7 @@ const schema = yup.object().shape({
         .min(4, "Họ và cần dài ít nhất 4 ký tự")
         .max(32, "Họ và phải có nhiều nhất 32 ký tự")
         .matches(/^[A-Za-z]+$/i, "Họ và tên không phải là số!"),
-    email: yup
-        .string()
-        .email("Email không họp lệ")
-        .required("Vui lòng nhập email của bạn!"),
+    email: yup.string().email("Email không họp lệ").required("Vui lòng nhập email của bạn!"),
     password: yup
         .string()
         .min(8, "Mật khẩu cần dài ít nhất 8 ký tự")
@@ -155,19 +146,13 @@ const Register = () => {
                             <p
                                 className={clsx(
                                     "text-[0.8rem] absolute text-center w-full font-medium",
-                                    infoLogin.isSuccess
-                                        ? "text-[#18aa01]"
-                                        : "text-[#f46a6a]"
+                                    infoLogin.isSuccess ? "text-[#18aa01]" : "text-[#f46a6a]"
                                 )}
                             >
                                 {infoLogin.message}
                             </p>
                         )}
-                        <Button
-                            label="Đăng ký"
-                            className="mt-3"
-                            loading={infoLogin.loading}
-                        />
+                        <Button label="Đăng ký" className="mt-3" loading={infoLogin.loading} />
                     </div>
                 </form>
             </LoginRegister>

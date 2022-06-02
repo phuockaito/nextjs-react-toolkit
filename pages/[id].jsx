@@ -16,9 +16,7 @@ const DetailId = ({ data, productPropose, id }) => {
     const _page_comment = router.query?._page_comment || 1;
 
     const [poster, setPoster] = React.useState(0);
-    const { dataComment } = useComment(
-        `comments/get-comments?_id_product=${id}&page=${_page_comment}`
-    );
+    const { dataComment } = useComment(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
 
     const createMarkup = () => {
         return { __html: data.description };
@@ -49,9 +47,7 @@ const DetailId = ({ data, productPropose, id }) => {
                     {data.key}
                 </LinkHref>
                 <BiChevronRight className="text-[#404042]" />
-                <p className="capitalize text-[#404042] font-light">
-                    {data.name}
-                </p>
+                <p className="capitalize text-[#404042] font-light">{data.name}</p>
             </div>
             <Section className="flex p-5 gap-3 lg:flex-row flex-col ">
                 <div className="basis-[60%]">
@@ -64,27 +60,19 @@ const DetailId = ({ data, productPropose, id }) => {
                                 </h3>
                                 <p className="font-light">
                                     Nhà xản xuất:
-                                    <span className="font-light ml-1">
-                                        {data.key}
-                                    </span>
+                                    <span className="font-light ml-1">{data.key}</span>
                                 </p>
                                 <p className="font-light">
                                     Bộ sưu tập:
-                                    <span className="font-light ml-1">
-                                        {data.collections}
-                                    </span>
+                                    <span className="font-light ml-1">{data.collections}</span>
                                 </p>
                                 <p className="font-light">
                                     Loại sản phẩm:
-                                    <span className="font-light ml-1">
-                                        {data.productType}
-                                    </span>
+                                    <span className="font-light ml-1">{data.productType}</span>
                                 </p>
                                 <p className="font-light">
                                     Dòng sản phẩm:
-                                    <span className="font-light ml-1">
-                                        {data.NSX}
-                                    </span>
+                                    <span className="font-light ml-1">{data.NSX}</span>
                                 </p>
                             </div>
                             <div>
@@ -139,11 +127,7 @@ const DetailId = ({ data, productPropose, id }) => {
                             <h3 className=" font-semibold flex gap-1 text-[#212427]">
                                 Price:
                                 <span className="text-[red]">
-                                    <NumberFormat
-                                        value={data.price}
-                                        displayType={"text"}
-                                        thousandSeparator={true}
-                                    />
+                                    <NumberFormat value={data.price} displayType={"text"} thousandSeparator={true} />
                                 </span>
                                 <p>đ</p>
                             </h3>
@@ -153,9 +137,7 @@ const DetailId = ({ data, productPropose, id }) => {
                         </div>
                         <div className="flex divide-x-2 gap-2 w-full place-items-center">
                             <span className="text-slate-600 text-[0.9rem] basis-4/12 text-center">
-                                {data.numReviews > 0
-                                    ? `${data.numReviews} đánh giá`
-                                    : "Chưa có đánh giá"}
+                                {data.numReviews > 0 ? `${data.numReviews} đánh giá` : "Chưa có đánh giá"}
                             </span>
                             <span className="text-slate-600 text-[0.9rem] basis-4/12 text-center">
                                 {dataComment && dataComment.length > 0
@@ -165,11 +147,7 @@ const DetailId = ({ data, productPropose, id }) => {
                             <div className="flex items-center gap-1 basis-4/12 text-center justify-center">
                                 <AiFillStar className="text-[#ff8b05]" />
                                 <p className="text-slate-600 flex gap-1 text-[0.9rem]">
-                                    {data.rating > 0
-                                        ? (
-                                              data.rating / data.numReviews
-                                          ).toFixed(1)
-                                        : 0}
+                                    {data.rating > 0 ? (data.rating / data.numReviews).toFixed(1) : 0}
                                     <span>/ 5</span>
                                 </p>
                             </div>

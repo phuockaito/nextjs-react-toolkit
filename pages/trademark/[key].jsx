@@ -4,22 +4,14 @@ import { apiProduct } from "@/api-client";
 import { Header } from "@/components";
 import { Pagination, WrapperCard } from "@/layout";
 import { MetaTag } from "@/customize";
-import {
-    defaultURL,
-    defaultDescription,
-    defaultContent,
-    defaultThumbnail,
-    defaultKeyword,
-} from "const";
+import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const Trademark = ({ dataType, title, type, page, pagination, sort_price }) => {
     return (
         <React.Fragment>
             <MetaTag
                 resolvedUrl={defaultURL}
-                title={title.replace(/\w\S*/g, (w) =>
-                    w.replace(/^\w/, (c) => c.toUpperCase())
-                )}
+                title={title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
                 description={defaultDescription}
                 content={defaultContent}
                 thumbnail={defaultThumbnail}
@@ -53,10 +45,7 @@ export default Trademark;
 Trademark.getLayout = (page) => <Header>{page}</Header>;
 
 export const getServerSideProps = async (context) => {
-    context.res.setHeader(
-        "Cache-Control",
-        "s-maxage=5,stale-while-revalidate=5"
-    );
+    context.res.setHeader("Cache-Control", "s-maxage=5,stale-while-revalidate=5");
 
     const { params, query } = context;
     const page = query._page || 1;
@@ -69,8 +58,7 @@ export const getServerSideProps = async (context) => {
         page: page,
         sort_price: sort_price,
     });
-    const pagination =
-        Number(Math.floor(length / limit)) + (length % limit == 0 ? 0 : 1);
+    const pagination = Number(Math.floor(length / limit)) + (length % limit == 0 ? 0 : 1);
 
     return {
         props: {

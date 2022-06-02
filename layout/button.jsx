@@ -12,9 +12,7 @@ export const Button = ({ label, className, bg = "bg-[#3069fe]", loading }) => {
             )}
             disabled={loading}
         >
-            {loading && (
-                <AiOutlineLoading className="text-[1rem] animate-spin mr-2" />
-            )}
+            {loading && <AiOutlineLoading className="text-[1rem] animate-spin mr-2" />}
             {label}
         </button>
     );

@@ -20,4 +20,8 @@ export const apiAccount = {
         const url = "user/google-login";
         return axiosClient.post(url, tokenId);
     },
+    changePassword: (password) => {
+        const url = "user/change-password";
+        return axiosClient.post(url, password);
+    },
 };

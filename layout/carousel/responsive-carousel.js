@@ -1,6 +1,4 @@
-
 export const responsiveCarousel = {
-
     "(max-width: 1280px)": {
         slidesPerView: 5,
         mode: "free-snap",

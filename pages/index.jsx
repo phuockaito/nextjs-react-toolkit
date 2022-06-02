@@ -6,14 +6,7 @@ import { Header } from "@/components";
 import { WrapperCard } from "@/layout";
 import { selectProfile } from "@/selector";
 
-import {
-    defaultURL,
-    defaultTile,
-    defaultDescription,
-    defaultContent,
-    defaultThumbnail,
-    defaultKeyword,
-} from "const";
+import { defaultURL, defaultTile, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 export default function Home({ productNew, productType, productSlider }) {
     const profile = useSelector(selectProfile);

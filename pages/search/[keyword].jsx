@@ -4,22 +4,14 @@ import { Header } from "@/components";
 import { apiSearch } from "@/api-client";
 import { Pagination, WrapperCard } from "@/layout";
 import { MetaTag } from "@/customize";
-import {
-    defaultURL,
-    defaultDescription,
-    defaultContent,
-    defaultThumbnail,
-    defaultKeyword,
-} from "const";
+import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const Search = ({ dataSearch, keyword, page, pagination }) => {
     return (
         <React.Fragment>
             <MetaTag
                 resolvedUrl={defaultURL}
-                title={keyword.replace(/\w\S*/g, (w) =>
-                    w.replace(/^\w/, (c) => c.toUpperCase())
-                )}
+                title={keyword.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
                 description={defaultDescription}
                 content={defaultContent}
                 thumbnail={defaultThumbnail}
@@ -51,10 +43,7 @@ export default Search;
 Search.getLayout = (page) => <Header>{page}</Header>;
 
 export const getServerSideProps = async (context) => {
-    context.res.setHeader(
-        "Cache-Control",
-        "s-maxage=59,stale-while-revalidate=59"
-    );
+    context.res.setHeader("Cache-Control", "s-maxage=59,stale-while-revalidate=59");
 
     const { query } = context;
 
@@ -66,9 +55,7 @@ export const getServerSideProps = async (context) => {
         keyword: query.keyword,
         page: page,
     });
-    const pagination =
-        Number(Math.floor(lengthProducts / limit)) +
-        (lengthProducts % limit == 0 ? 0 : 1);
+    const pagination = Number(Math.floor(lengthProducts / limit)) + (lengthProducts % limit == 0 ? 0 : 1);
 
     return {
         props: {
