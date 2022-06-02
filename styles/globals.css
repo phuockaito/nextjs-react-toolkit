@@ -40,6 +40,9 @@ button {
 p {
     margin-bottom: 0 !important;
 }
+a {
+    color: inherit !important;
+}
 
 body {
     line-height: 1.5 !important;
