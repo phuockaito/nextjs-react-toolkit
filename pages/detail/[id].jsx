@@ -3,19 +3,18 @@ import { useRouter } from "next/router";
 import NumberFormat from "react-number-format";
 import clsx from "clsx";
 import { message } from "antd";
-import useSWR from "swr";
 import NoSSR from "react-no-ssr";
 
 import { apiProduct } from "@/api-client";
 import { MetaTag, Image, LinkHref } from "@/customize";
-import { Section, WrapperCard } from "@/layout";
+import { Section } from "@/layout";
 import { WrapperComment, Header, SuggestedProduct } from "@/components";
 
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
 import { useComment, useCart } from "@/hooks";
 
-const DetailId = ({ data, productPropose, id, suggested_keyword }) => {
+const DetailId = ({ data, id, suggested_keyword }) => {
     const router = useRouter();
     const _page_comment = router.query?._page_comment || 1;
 
@@ -154,9 +153,10 @@ const DetailId = ({ data, productPropose, id, suggested_keyword }) => {
                                                 price: data.price,
                                                 key: data.key,
                                                 NSX: data.NSX,
+                                                size: size,
                                                 collections: data.collections,
                                             },
-                                            quantily: size,
+                                            quantity: 1,
                                         });
                                     } else {
                                         message.error("Vui lòng chọn size");

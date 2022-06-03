@@ -7,6 +7,7 @@ import { selectCart } from "@/selector";
 export const useCart = () => {
     const dispatch = useDispatch();
     const storeCart = useSelector(selectCart);
+    console.log("storeCart", storeCart);
 
     const handleAddToCartReducers = React.useCallback((product) => dispatch(addToCartReducers(product)), [dispatch]);
     return { handleAddToCartReducers, storeCart };
