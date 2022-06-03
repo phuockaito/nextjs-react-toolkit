@@ -74,7 +74,7 @@ export const WrapperCard = ({
                                     Chưa có đánh giá
                                 </p>
                             )}
-                            <LinkHref href={`/${item._id}`}>
+                            <LinkHref href={`detail/${item._id}`}>
                                 <h2 className="truncate text-[1.1rem] font-semibold capitalize text-slate-800">
                                     {item.name}
                                 </h2>

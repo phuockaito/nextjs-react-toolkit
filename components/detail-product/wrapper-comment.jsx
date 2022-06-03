@@ -5,9 +5,9 @@ import NoSSR from "react-no-ssr";
 import { Section } from "@/layout";
 import { CardComment } from "./card-comment";
 
-export const WrapperComment = ({ dataComment, _page_comment }) => {
+export const WrapperComment = ({ dataComment, _page_comment, id_product }) => {
     const router = useRouter();
-    console.log("dataComment", dataComment);
+
     if (!dataComment) {
         return (
             <Section className="grid gap-2">
@@ -55,9 +55,10 @@ export const WrapperComment = ({ dataComment, _page_comment }) => {
                                         onClick={() => {
                                             router.push(
                                                 {
-                                                    pathname: data._id,
+                                                    pathname: "/detail/[id]",
                                                     query: {
-                                                        _page_comment: (Number(_page_comment) || 1) + 1,
+                                                        _page_comment: Number(_page_comment) + 1,
+                                                        id: id_product,
                                                     },
                                                 },
                                                 undefined,

@@ -187,7 +187,7 @@ const DetailId = ({ data, productPropose, id, suggested_keyword }) => {
                 </div>
             </Section>
             <NoSSR>
-                <WrapperComment dataComment={dataComment} _page_comment={_page_comment} />
+                <WrapperComment dataComment={dataComment} _page_comment={_page_comment} id_product={data._id} />
                 <SuggestedProduct keyword={suggested_keyword} />
             </NoSSR>
         </React.Fragment>
