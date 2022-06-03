@@ -74,7 +74,7 @@ export const WrapperCard = ({
                                     Chưa có đánh giá
                                 </p>
                             )}
-                            <LinkHref href={`detail/${item._id}`}>
+                            <LinkHref href={`/detail/${item._id}`}>
                                 <h2 className="truncate text-[1.1rem] font-semibold capitalize text-slate-800">
                                     {item.name}
                                 </h2>
@@ -102,9 +102,8 @@ export const WrapperCard = ({
                                 </div>
                                 <div className="flex gap-2">
                                     <ImageAntd.PreviewGroup>
-                                        {item.poster.map((img) => (
-                                            <ImageAntd width={35} src={img.url} key={img.url} />
-                                        ))}
+                                        <ImageAntd width={35} src={item.poster[0].url} key={item.poster[0].url} />
+                                        <ImageAntd width={35} src={item.poster[1].url} key={item.poster[1].url} />
                                     </ImageAntd.PreviewGroup>
                                 </div>
                             </div>
