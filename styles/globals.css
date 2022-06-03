@@ -4,9 +4,6 @@
 @import "aos/dist/aos.css";
 
 @import url("https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;500;600;700&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&family=Mukta:wght@200;300;400;500;600&family=Roboto+Flex:opsz,wght@8..144,100;8..144,200;8..144,300;8..144,400;8..144,500;8..144,600;8..144,700;8..144,800&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 a {
     color: inherit;
@@ -41,9 +38,8 @@ body {
     font-size: 1rem;
 }
 .shadow-card {
-    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%),
-        0 9px 28px 8px rgb(0 0 0 / 5%);
+    box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
 }
-.shadow-dropdown-menu{
+.shadow-dropdown-menu {
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
 }

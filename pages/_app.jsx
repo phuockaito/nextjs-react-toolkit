@@ -6,6 +6,7 @@ import { SWRConfig } from "swr";
 import { axiosClient } from "@/api-client";
 import { wrapper } from "app";
 import { AppWrapper } from "@/context";
+import "../styles/tailwind.css";
 import 'antd/dist/antd.css';
 import "../styles/globals.css";
 
@@ -19,9 +20,9 @@ function MyApp({ Component, pageProps }) {
     }, []);
 
     const getLayout = Component.getLayout || ((page) => page);
-
     return (
         <React.Fragment>
+
             <NextNProgress height={6} stopDelayMs={0} color="#3069fe" />
             <SWRConfig
                 value={{
@@ -30,7 +31,8 @@ function MyApp({ Component, pageProps }) {
                 }}
             >
                 <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
-            </SWRConfig>
+                </SWRConfig>
+
         </React.Fragment>
     );
 }
