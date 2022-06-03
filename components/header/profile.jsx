@@ -28,10 +28,9 @@ const schema = yup.object().shape({
         .oneOf([yup.ref("password")], "Mật khẩu nhập không khớp !"),
 });
 
-
 export const Profile = ({ avatar, name, email }) => {
     const { storeCart } = useCart();
-    console.log('storeCart.dataCart',storeCart.dataCart)
+    console.log("storeCart.dataCart", storeCart.dataCart);
     const {
         register,
         handleSubmit,
@@ -57,17 +56,17 @@ export const Profile = ({ avatar, name, email }) => {
     };
     return (
         <>
-            <div className="flex gap-4 items-center">
+            <div className="flex items-center gap-4">
                 <Badge count={storeCart.dataCart.length}>
-                    <AiOutlineShoppingCart className="text-[#6e6d7a] text-[1.2rem]" />
+                    <AiOutlineShoppingCart className="text-[1.2rem] text-[#6e6d7a]" />
                 </Badge>
                 <Dropdown
                     trigger={["click"]}
                     overlay={() => (
-                        <div className="py-2 shadow-dropdown-menu bg-white rounded-[0.25rem] relative top-[1rem]">
+                        <div className="shadow-dropdown-menu relative top-[1rem] rounded-[0.25rem] bg-white py-2">
                             <div className="w-[250px]">
                                 <div
-                                    className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]"
+                                    className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]"
                                     onClick={() => {
                                         navigator.clipboard.writeText(email);
                                         message.success("Đã copy Email");
@@ -76,26 +75,26 @@ export const Profile = ({ avatar, name, email }) => {
                                     <HiOutlineMail className="text-[1rem]" />
                                     <h1 className="truncate">{email}</h1>
                                 </div>
-                                <div className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]">
+                                <div className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]">
                                     <AiOutlineShoppingCart className="text-[1rem]" />
                                     <h1>Lịch sử mua hàng</h1>
                                 </div>
-                                <div className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]">
+                                <div className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]">
                                     <AiOutlineHistory className="text-[1rem]" />
                                     <h1>Nhật ký hoạt động</h1>
                                 </div>
                                 <div
-                                    className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]"
+                                    className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]"
                                     onClick={() => setIsModalVisible(true)}
                                 >
                                     <VscLock className="text-[1rem]" />
                                     <h1>Đổi mật khẩu</h1>
                                 </div>
                                 <div
-                                    className="flex gap-2 px-[24px] py-[8px] items-center cursor-pointer hover:bg-[#f8f9fa]"
+                                    className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]"
                                     onClick={handleLogout}
                                 >
-                                    <VscSignOut className="text-[#f46a6a] text-[1rem]" />
+                                    <VscSignOut className="text-[1rem] text-[#f46a6a]" />
                                     <h1 className="text-[#f46a6a]">Đăng xuất</h1>
                                 </div>
                             </div>
@@ -120,7 +119,7 @@ export const Profile = ({ avatar, name, email }) => {
                 centered
             >
                 <form onSubmit={handleSubmit(onSubmitChangePassword)}>
-                    <div className="flex flex-col gap-3 w-full relative">
+                    <div className="relative flex w-full flex-col gap-3">
                         <Input
                             size="md"
                             name="password"

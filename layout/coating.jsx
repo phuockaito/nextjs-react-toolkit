@@ -8,7 +8,7 @@ export const Coating = ({ onClick, className, children, isClose }) => {
         >
             {isClose && (
                 <div className="fixed right-0 p-3">
-                    <p className="w-5 h-5 flex items-center justify-center text-white uppercase font-semibold cursor-pointer">
+                    <p className="flex h-5 w-5 cursor-pointer items-center justify-center font-semibold uppercase text-white">
                         x
                     </p>
                 </div>

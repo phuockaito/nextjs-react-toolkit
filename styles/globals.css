@@ -43,3 +43,11 @@ body {
 .shadow-dropdown-menu {
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
 }
+
+.ant-image-mask-info{
+    display:none;
+}
+.ant-image-preview-img-wrapper{
+    display: grid;
+    place-content: center;
+}

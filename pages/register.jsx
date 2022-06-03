@@ -91,7 +91,7 @@ const Register = () => {
                 description_page="Bạn đã có tài khoản đăng nhập ngay ?"
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="flex flex-col gap-3 w-full relative">
+                    <div className="relative flex w-full flex-col gap-3">
                         <Input
                             size="md"
                             type="text"
@@ -149,7 +149,7 @@ const Register = () => {
                         {infoLogin.message && (
                             <p
                                 className={clsx(
-                                    "text-[0.8rem] absolute text-center w-full font-medium",
+                                    "absolute w-full text-center text-[0.8rem] font-medium",
                                     infoLogin.isSuccess ? "text-[#18aa01]" : "text-[#f46a6a]"
                                 )}
                             >

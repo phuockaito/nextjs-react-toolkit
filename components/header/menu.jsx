@@ -4,8 +4,6 @@ import useSWR from "swr";
 
 import { Image, LinkHref } from "@/customize";
 import { IconLogo } from "@/image/index";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BiLogIn } from "react-icons/bi";
 import { useAuth } from "@/hooks";
 import { Search } from "./search";
 import { Profile } from "./profile";
@@ -19,10 +17,10 @@ export const Menu = () => {
 
     if (!data || error) {
         return (
-            <header className="px-6 border-b bg-white sticky top-0 z-[5] shadow-md h-20">
-                <div className=" flex gap-4 h-full items-center">
+            <header className="sticky top-0 z-[5] h-20 border-b bg-white px-6 shadow-md">
+                <div className=" flex h-full items-center gap-4">
                     {[...new Array(5)].map((_, index) => (
-                        <div key={index.toString()} className="animate-pulse h-5 bg-slate-400 rounded w-28" />
+                        <div key={index.toString()} className="h-5 w-28 animate-pulse rounded bg-slate-400" />
                     ))}
                 </div>
             </header>
@@ -30,17 +28,17 @@ export const Menu = () => {
     }
 
     return (
-        <header className="px-4 py-2 border-b bg-white sticky top-0 z-[5] shadow-md">
+        <header className="sticky top-0 z-[5] border-b bg-white px-4 py-2 shadow-md">
             <nav className="relative block">
-                <div className="flex justify-between items-center">
-                    <div className="flex gap-4 items-center">
-                        <LinkHref href="/" className="flex mr-2">
-                            <Image src={IconLogo.src} alt="" className="w-40 h-14" />
+                <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                        <LinkHref href="/" className="mr-2 flex">
+                            <Image src={IconLogo.src} alt="" className="h-14 w-40" />
                         </LinkHref>
                         <ul className="menu">
                             <li>
                                 <Link href="/" rel="canonical">
-                                    <a className="menu-item text-[#6e6d7a] font-normal hover:text-[#4058ff]">Home</a>
+                                    <a className="menu-item font-normal text-[#6e6d7a] hover:text-[#4058ff]">Home</a>
                                 </Link>
                             </li>
                             {Object.entries(data).map((menu) => (
@@ -61,20 +59,20 @@ export const Menu = () => {
                             ))}
                         </ul>
                     </div>
-                    <div className="flex gap-4 items-center">
+                    <div className="flex items-center gap-4">
                         <Search />
                         {profile ? (
                             <Profile {...profile} />
                         ) : (
-                            <div className="flex gap-4 items-center">
+                            <div className="flex items-center gap-4">
                                 <LinkHref
-                                    className="px-6 py-2 bg-[#4058ff] text-white rounded-[0.25rem] border border-[#4058ff] hover:bg-white hover:text-[#4058ff]"
+                                    className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-white hover:bg-white hover:text-[#4058ff]"
                                     href="/login"
                                 >
                                     Login
                                 </LinkHref>
                                 <LinkHref
-                                    className="px-6 py-2 bg-[#4058ff] text-white rounded-[0.25rem] border border-[#4058ff] hover:bg-white hover:text-[#4058ff]"
+                                    className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-white hover:bg-white hover:text-[#4058ff]"
                                     href="/register"
                                 >
                                     Sign up

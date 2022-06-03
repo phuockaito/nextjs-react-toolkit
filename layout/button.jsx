@@ -5,14 +5,14 @@ export const Button = ({ label, className, bg = "bg-[#3069fe]", loading }) => {
     return (
         <button
             className={clsx(
-                "p-3 rounded-[0.25rem] text-white flex items-center justify-center",
+                "flex items-center justify-center rounded-[0.25rem] p-3 text-white",
                 className,
                 bg,
                 loading && "cursor-not-allowed opacity-90"
             )}
             disabled={loading}
         >
-            {loading && <AiOutlineLoading className="text-[1rem] animate-spin mr-2" />}
+            {loading && <AiOutlineLoading className="mr-2 animate-spin text-[1rem]" />}
             {label}
         </button>
     );

@@ -19,10 +19,10 @@ export const CardComment = ({ dataComment }) => {
                     </div>
                     <div className="flex-1">
                         <div>
-                            <div className="flex justify-between items-center mb-1">
-                                <h3 className="font-semibold text-[#1ebc61] text-[1rem] flex items-center gap-2">
+                            <div className="mb-1 flex items-center justify-between">
+                                <h3 className="flex items-center gap-2 text-[1rem] font-semibold text-[#1ebc61]">
                                     {comment.name}
-                                    <p className="text-[#5d6488] font-normal text-[0.9rem] flex gap-1">
+                                    <p className="flex gap-1 text-[0.9rem] font-normal text-[#5d6488]">
                                         {moment(comment.timeComment).fromNow()}
                                         <span className="text-[0.9rem]">{comment.editComment && "(đã chỉnh sửa)"}</span>
                                     </p>

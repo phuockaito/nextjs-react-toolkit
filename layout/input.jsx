@@ -27,16 +27,16 @@ export const Input = ({
 
     return (
         <div className={className}>
-            {label && <span className="block mb-2 text-sm font-medium text-[#495057]">{label}</span>}
+            {label && <span className="mb-2 block text-sm font-medium text-[#495057]">{label}</span>}
             <div className="relative flex flex-col">
                 {iconSubmit ? (
-                    <div className="absolute inset-y-0 left-1 flex h-full items-center pl-2 w-8">
+                    <div className="absolute inset-y-0 left-1 flex h-full w-8 items-center pl-2">
                         <button>
                             <Icon className="text-slate-500" />
                         </button>
                     </div>
                 ) : (
-                    <div className="absolute inset-y-0 left-1 flex h-full items-center pl-2 w-8">
+                    <div className="absolute inset-y-0 left-1 flex h-full w-8 items-center pl-2">
                         <Icon className="text-slate-500" />
                     </div>
                 )}
@@ -45,7 +45,7 @@ export const Input = ({
                     <input
                         {...props}
                         className={clsx(
-                            "text-[#495057] placeholder:text-[#74788d] block placeholder:text-[13px] bg-white w-full border border-[#ced4da] rounded-[0.25rem] px-8 shadow-sm focus:outline-none focus:border-[#ced4da] focus:ring-[#ced4da] focus:ring-1",
+                            "block w-full rounded-[0.25rem] border border-[#ced4da] bg-white px-8 text-[#495057] shadow-sm placeholder:text-[13px] placeholder:text-[#74788d] focus:border-[#ced4da] focus:outline-none focus:ring-1 focus:ring-[#ced4da]",
                             inputClassName,
                             size === "sm" && "py-[5px]",
                             size === "md" && "py-2"
@@ -59,7 +59,7 @@ export const Input = ({
                     <input
                         {...props}
                         className={clsx(
-                            "text-[#495057] placeholder:text-[#74788d] block placeholder:text-[13px] bg-white w-full border border-[#ced4da] rounded-[0.25rem] pl-8 pr-3 shadow-sm focus:outline-none focus:border-[#ced4da] focus:ring-[#ced4da] focus:ring-1",
+                            "block w-full rounded-[0.25rem] border border-[#ced4da] bg-white pl-8 pr-3 text-[#495057] shadow-sm placeholder:text-[13px] placeholder:text-[#74788d] focus:border-[#ced4da] focus:outline-none focus:ring-1 focus:ring-[#ced4da]",
                             inputClassName,
                             size === "sm" && "py-[5px]",
                             size === "md" && "py-2"
@@ -69,15 +69,15 @@ export const Input = ({
                     />
                 )}
                 {showIconPassword && (
-                    <div className="absolute inset-y-0 right-1 flex h-full items-center w-8 pl-2">
+                    <div className="absolute inset-y-0 right-1 flex h-full w-8 items-center pl-2">
                         <IconShowPassword
-                            className="text-slate-500 cursor-pointer"
+                            className="cursor-pointer text-slate-500"
                             onClick={() => setTextType(textType === "text" ? "password" : "text")}
                         />
                     </div>
                 )}
             </div>
-            {errors && <p className="text-[#f46a6a] text-[0.8rem] mt-1">{errors}</p>}
+            {errors && <p className="mt-1 text-[0.8rem] text-[#f46a6a]">{errors}</p>}
         </div>
     );
 };

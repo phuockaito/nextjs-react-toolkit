@@ -11,7 +11,7 @@ export const WrapperComment = ({ dataComment, _id_product, count_comments, _page
         <React.Fragment>
             <NoSSR>
                 <Section>
-                    <h6 className="text-xl mb-3 font-semibold text-[#212427] capitalize">
+                    <h6 className="mb-3 text-xl font-semibold capitalize text-[#212427]">
                         Phản hồi ({count_comments})
                     </h6>
                     <div className="flex flex-col gap-4">

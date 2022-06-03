@@ -83,7 +83,7 @@ const Login = () => {
                 description_page="Không có tài khoản?"
             >
                 <form onSubmit={handleSubmit(submitLogin)}>
-                    <div className="flex flex-col gap-3 w-full relative">
+                    <div className="relative flex w-full flex-col gap-3">
                         <Input
                             size="md"
                             name="email"
@@ -112,7 +112,7 @@ const Login = () => {
                             errors={errors && errors.password?.message}
                         />
                         {infoLogin.messageError && (
-                            <p className="text-[#f46a6a] text-[0.8rem] absolute text-center w-full">
+                            <p className="absolute w-full text-center text-[0.8rem] text-[#f46a6a]">
                                 {infoLogin.messageError}
                             </p>
                         )}
