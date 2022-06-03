@@ -24,11 +24,10 @@ export const WrapperCard = ({
 }) => {
     const router = useRouter();
 
-
     return (
         <Section className={className}>
             <div className="mb-4 flex justify-between">
-                <h1 className="text-xl font-semibold capitalize text-[#212427]">{title}</h1>
+                {data && <h1 className="text-xl font-semibold capitalize text-[#212427]">{title}</h1>}
                 {is_sort_price && (
                     <div className="flex gap-1">
                         {filterPrice.map((item) => (
@@ -58,7 +57,7 @@ export const WrapperCard = ({
                 )}
             </div>
             <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
-                {data &&
+                {data ? (
                     data.map((item) => (
                         <div key={item._id} className="rounded border border-[#e8dfec] p-4" data-aos="zoom-in">
                             {item.rating > 0 ? (
@@ -110,7 +109,17 @@ export const WrapperCard = ({
                                 </div>
                             </div>
                         </div>
-                    ))}
+                    ))
+                ) : (
+                    <>
+                        {[...Array(4)].map((_, index) => (
+                            <div
+                                className="md h-[355px] w-[305px] animate-pulse rounded-md bg-slate-300"
+                                key={index.toString()}
+                            />
+                        ))}
+                    </>
+                )}
             </div>
             {children}
         </Section>

@@ -3,23 +3,26 @@ import { useRouter } from "next/router";
 import NumberFormat from "react-number-format";
 import clsx from "clsx";
 import { message } from "antd";
+import useSWR from "swr";
+import NoSSR from "react-no-ssr";
 
 import { apiProduct } from "@/api-client";
 import { MetaTag, Image, LinkHref } from "@/customize";
 import { Section, WrapperCard } from "@/layout";
-import { WrapperComment, Header } from "@/components";
+import { WrapperComment, Header, SuggestedProduct } from "@/components";
 
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
 import { useComment, useCart } from "@/hooks";
 
-const DetailId = ({ data, productPropose, id }) => {
+const DetailId = ({ data, productPropose, id, suggested_keyword }) => {
     const router = useRouter();
     const _page_comment = router.query?._page_comment || 1;
 
     const [poster, setPoster] = React.useState(0);
     const [size, setSize] = React.useState(null);
     const { dataComment } = useComment(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
+
     const { handleAddToCartReducers } = useCart();
 
     const createMarkup = () => {
@@ -183,19 +186,10 @@ const DetailId = ({ data, productPropose, id }) => {
                     </div>
                 </div>
             </Section>
-            {dataComment ? (
-                <WrapperComment
-                    dataComment={dataComment.data}
-                    count_comments={dataComment.length}
-                    _id_product={data._id}
-                    _page_comment={_page_comment}
-                />
-            ) : (
-                <Section>
-                    <h6>Loading...</h6>
-                </Section>
-            )}
-            <WrapperCard data={productPropose} title="Sản phẩm tương tự" />
+            <NoSSR>
+                <WrapperComment dataComment={dataComment} _page_comment={_page_comment} />
+                <SuggestedProduct keyword={suggested_keyword} />
+            </NoSSR>
         </React.Fragment>
     );
 };
@@ -206,17 +200,10 @@ DetailId.getLayout = (page) => <Header>{page}</Header>;
 export const getStaticProps = async (context) => {
     const { params } = context;
     const { product } = await apiProduct.getProductById(params.id);
-    const product_propose = await apiProduct.getProductType({
-        items: 8,
-        name: product.key,
-        page: 1,
-        sort_price: 0,
-    });
-
     return {
         props: {
             data: product,
-            productPropose: product_propose.data,
+            suggested_keyword: product.key,
             id: params.id,
         },
         revalidate: 5,
