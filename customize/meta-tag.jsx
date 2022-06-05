@@ -32,6 +32,7 @@ export const MetaTag = ({
 
             <link rel="apple-touch-icon" href={shortcutIcon || Logo.src} />
             <link rel="icon" href={shortcutIcon || Logo.src} />
+            <meta name="google-site-verification" content="TtFAyDDDG8SbHTN2DdFY7PGvCxF5gDM3pgnXwMOPRP8" />
             <meta
                 name="robots"
                 content={isDefault ? title : `${title} - ${nameUrl}`}
