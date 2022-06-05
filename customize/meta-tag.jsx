@@ -2,9 +2,7 @@ import React from "react";
 
 import Head from "next/head";
 
-import Logo from "@/public/favicon.ico";
-
-const nameUrl = "nextjs react query";
+const nameUrl = "Kaito Shop";
 
 export const MetaTag = ({
     title,
