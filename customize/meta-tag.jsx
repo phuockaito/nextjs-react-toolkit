@@ -10,7 +10,7 @@ export const MetaTag = ({
     title,
     description,
     content,
-    thumbnail = "https://kaitomovie.cf/image/logo.png",
+    thumbnail = "https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png",
     keywords,
     shortcutIcon,
     resolvedUrl,
@@ -27,11 +27,11 @@ export const MetaTag = ({
             <link
                 rel="shortcut icon"
                 type="image/x-icon"
-                href={shortcutIcon || Logo.src}
+                href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png"
             />
 
-            <link rel="apple-touch-icon" href={shortcutIcon || Logo.src} />
-            <link rel="icon" href={shortcutIcon || Logo.src} />
+            <link rel="apple-touch-icon" href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png" />
+            <link rel="icon" href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png" />
             <meta name="google-site-verification" content="TtFAyDDDG8SbHTN2DdFY7PGvCxF5gDM3pgnXwMOPRP8" />
             <meta
                 name="robots"
