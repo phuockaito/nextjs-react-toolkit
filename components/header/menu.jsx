@@ -15,8 +15,6 @@ export const Menu = () => {
     });
     const { profile } = useAuth();
 
-    console.log("data", data);
-
     if (!data || error) {
         return (
             <header className="sticky top-0 z-[5] h-20 border-b bg-white px-6 shadow-md">

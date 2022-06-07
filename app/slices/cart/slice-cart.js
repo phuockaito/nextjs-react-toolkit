@@ -53,9 +53,29 @@ export const sliceCart = createSlice({
             }
             localStorage.setItem("cart", JSON.stringify(dataCart));
         },
+        updateCartProduct: (state, action) => {
+            const { dataCart } = state;
+            const { index, quantity } = action.payload;
+            const indexState = dataCart.findIndex((product, indexCart) => indexCart === index);
+            if (indexState !== -1) {
+                dataCart[indexState].quantity = quantity;
+            }
+            message.success("Cập Nhật Thành Công", 1.5);
+            localStorage.setItem("cart", JSON.stringify(dataCart));
+        },
+        deleteCartProduct: (state, action) => {
+            const { dataCart } = state;
+            const index = action.payload;
+            const indexState = dataCart.findIndex((product, indexCart) => indexCart === index);
+            if (indexState !== -1) {
+                dataCart.splice(indexState, 1);
+            }
+            message.success("Xóa Thành Công", 1.5);
+            localStorage.setItem("cart", JSON.stringify(dataCart));
+        },
     },
 });
 
 const { actions, reducer } = sliceCart;
-export const { addToCartReducers } = actions;
+export const { addToCartReducers, updateCartProduct, deleteCartProduct } = actions;
 export default reducer;

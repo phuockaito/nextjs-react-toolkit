@@ -6,6 +6,7 @@
         "dev": "next dev",
         "build": "next build",
         "start": "next start",
+        "product": "yarn build && yarn start",
         "lint": "next lint",
         "prettier:fix": "prettier --write \"api-client/**/(*.jsx|*.js|*.scss)\" \"app/**/(*.jsx|*.js|*.scss)\" \"components/**/(*.jsx|*.js|*.scss)\" \"hooks/**/(*.jsx|*.js|*.scss)\" \"layout/**/(*.jsx|*.js|*.scss)\" \"pages/**/(*.jsx|*.js|*.scss)\" \"package.json\""
     },

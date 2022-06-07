@@ -31,10 +31,10 @@ button {
 
 body {
     line-height: 1.5;
-    font-family: "Inconsolata", monospace;
-    font-family: "Josefin Sans", sans-serif;
-    font-family: "Mukta", sans-serif;
-    font-family: "Roboto Flex", sans-serif;
+    font-family: "Inconsolata", monospace !important;
+    font-family: "Josefin Sans", sans-serif !important;
+    font-family: "Mukta", sans-serif !important;
+    font-family: "Roboto Flex", sans-serif !important;
     font-size: 1rem;
 }
 .shadow-card {
@@ -44,10 +44,13 @@ body {
     box-shadow: 0 1rem 3rem rgb(0 0 0 / 18%);
 }
 
-.ant-image-mask-info{
-    display:none;
+.ant-image-mask-info {
+    display: none;
 }
-.ant-image-preview-img-wrapper{
+.ant-image-preview-img-wrapper {
     display: grid;
     place-content: center;
+}
+#nprogress .spinner-icon {
+    display: none !important;
 }

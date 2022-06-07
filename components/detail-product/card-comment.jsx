@@ -7,7 +7,7 @@ export const CardComment = ({ dataComment }) => {
     return (
         <div className="divide-y-[1.5px]">
             {dataComment.map((comment) => (
-                <div className="flex gap-2 py-2" key={comment._id}>
+                <div className="flex gap-4 py-4" key={comment._id}>
                     <div>
                         <Image
                             alt={comment.avatar}

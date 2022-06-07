@@ -11,6 +11,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import { Button, Input } from "@/layout";
 import { useAuth, useCart } from "@/hooks";
 import { HiOutlineMail } from "react-icons/hi";
+import { LinkHref } from "@/customize";
 
 const schema = yup.object().shape({
     password: yup
@@ -30,7 +31,6 @@ const schema = yup.object().shape({
 
 export const Profile = ({ avatar, name, email }) => {
     const { storeCart } = useCart();
-    console.log("storeCart.dataCart", storeCart.dataCart);
     const {
         register,
         handleSubmit,
@@ -58,7 +58,9 @@ export const Profile = ({ avatar, name, email }) => {
         <>
             <div className="flex items-center gap-4">
                 <Badge count={storeCart.dataCart.length}>
-                    <AiOutlineShoppingCart className="text-[1.2rem] text-[#6e6d7a]" />
+                    <LinkHref href="/cart">
+                        <AiOutlineShoppingCart className="text-[1.2rem] text-[#6e6d7a]" />
+                    </LinkHref>
                 </Badge>
                 <Dropdown
                     trigger={["click"]}

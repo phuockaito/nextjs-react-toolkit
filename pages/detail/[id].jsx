@@ -31,7 +31,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
     return (
         <React.Fragment>
             <MetaTag
-                title={`${data.name}`}
+                title={`${data.name.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}`}
                 description={`${data.name} | ${data.collections}`}
                 content={`${data.name}`}
                 thumbnail={data.poster[0].url}
