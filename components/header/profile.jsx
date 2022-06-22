@@ -3,13 +3,14 @@ import { Dropdown, Modal, message, Badge } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 import { AiOutlineShoppingCart, AiOutlineHistory } from "react-icons/ai";
 import { Image } from "@/customize";
 import { VscSignOut, VscLock } from "react-icons/vsc";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Button, Input } from "@/layout";
-import { useAuth, useCart } from "@/hooks";
+import { useAuth } from "@/hooks";
 import { HiOutlineMail } from "react-icons/hi";
 import { LinkHref } from "@/customize";
 
@@ -30,7 +31,6 @@ const schema = yup.object().shape({
 });
 
 export const Profile = ({ avatar, name, email }) => {
-    const { storeCart } = useCart();
     const {
         register,
         handleSubmit,
@@ -38,6 +38,8 @@ export const Profile = ({ avatar, name, email }) => {
     } = useForm({
         resolver: yupResolver(schema),
     });
+
+    const router = useRouter();
     const { handleLogout, handleChangePassword } = useAuth();
     const [isModalVisible, setIsModalVisible] = React.useState(false);
     const [loading, setLoading] = React.useState(false);
@@ -57,11 +59,6 @@ export const Profile = ({ avatar, name, email }) => {
     return (
         <>
             <div className="flex items-center gap-4">
-                <Badge count={storeCart.dataCart.length}>
-                    <LinkHref href="/cart">
-                        <AiOutlineShoppingCart className="text-[1.2rem] text-[#6e6d7a]" />
-                    </LinkHref>
-                </Badge>
                 <Dropdown
                     trigger={["click"]}
                     overlay={() => (
@@ -77,7 +74,10 @@ export const Profile = ({ avatar, name, email }) => {
                                     <HiOutlineMail className="text-[1rem]" />
                                     <h1 className="truncate">{email}</h1>
                                 </div>
-                                <div className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]">
+                                <div
+                                    className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]"
+                                    onClick={() => router.push("/history-cart")}
+                                >
                                     <AiOutlineShoppingCart className="text-[1rem]" />
                                     <h1>Lịch sử mua hàng</h1>
                                 </div>

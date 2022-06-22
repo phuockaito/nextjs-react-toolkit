@@ -1,11 +1,19 @@
 import clsx from "clsx";
 import { AiOutlineLoading } from "react-icons/ai";
 
-export const Button = ({ label, className, bg = "bg-[#3069fe]", loading, size = "md" }) => {
+export const Button = ({
+    label,
+    className,
+    bg = "bg-[#3069fe]",
+    loading,
+    size = "md",
+    Element = "button",
+    onClick,
+}) => {
     return (
-        <button
+        <Element
             className={clsx(
-                "flex items-center justify-center rounded-[0.25rem] text-white",
+                "flex cursor-pointer items-center justify-center rounded-[0.25rem] text-white",
                 className,
                 bg,
                 loading && "cursor-not-allowed opacity-90",
@@ -13,9 +21,10 @@ export const Button = ({ label, className, bg = "bg-[#3069fe]", loading, size = 
                 size == "md" && "p-3"
             )}
             disabled={loading}
+            onClick={onClick && onClick}
         >
             {loading && <AiOutlineLoading className="mr-2 animate-spin text-[1rem]" />}
             {label}
-        </button>
+        </Element>
     );
 };

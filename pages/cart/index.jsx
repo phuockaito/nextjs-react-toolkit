@@ -1,8 +1,5 @@
 import * as React from "react";
-import NumberFormat from "react-number-format";
 import NoSSR from "react-no-ssr";
-import { Form, Select, Input, message } from "antd";
-import { unwrapResult } from "@reduxjs/toolkit";
 
 import { useCart } from "@/hooks";
 import { Header, Product, FormPayment } from "@/components";
@@ -28,27 +25,32 @@ const Cart = () => {
     return (
         <React.Fragment>
             <NoSSR>
-                <div className="flex flex-col-reverse gap-4 px-4 sm:flex-row">
-                    <Section className="basis-6/12 md:basis-7/12 lg:basis-8/12">
-                        <FormPayment
-                            dataDistrict={dataDistrict}
-                            dataCommune={dataCommune}
-                            setDistrict={setDistrict}
-                            setCommune={setCommune}
-                            dataCity={dataCity}
-                            dataCart={storeCart.dataCart}
-                            handlePostCart={handlePostCart}
-                            loading={storeCart.loading}
-                        />
+                {storeCart.dataCart?.length > 0 ? (
+                    <div className="flex flex-col-reverse gap-4 px-4 sm:flex-row">
+                        <Section className="basis-4/12">
+                            <FormPayment
+                                dataDistrict={dataDistrict}
+                                dataCommune={dataCommune}
+                                setDistrict={setDistrict}
+                                setCommune={setCommune}
+                                dataCity={dataCity}
+                                dataCart={storeCart.dataCart}
+                                handlePostCart={handlePostCart}
+                            />
+                        </Section>
+                        <Section className="basis-8/12">
+                            <Product
+                                dataCart={storeCart.dataCart}
+                                onUpdateCartReducers={handleUpdateCartReducers}
+                                onDeleteCartReducers={handleDeleteCartReducers}
+                            />
+                        </Section>
+                    </div>
+                ) : (
+                    <Section className="">
+                        <h3>Không có sản phẩm nào trong giỏ hàng của bạn.</h3>
                     </Section>
-                    <Section className="basis-6/12 md:basis-5/12 lg:basis-4/12">
-                        <Product
-                            dataCart={storeCart.dataCart}
-                            onUpdateCartReducers={handleUpdateCartReducers}
-                            onDeleteCartReducers={handleDeleteCartReducers}
-                        />
-                    </Section>
-                </div>
+                )}
             </NoSSR>
         </React.Fragment>
     );

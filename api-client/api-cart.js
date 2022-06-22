@@ -5,4 +5,8 @@ export const apiCart = {
         const url = "/cart/add-cart";
         return axiosClient.post(url, data);
     },
+    getCart: () => {
+        const url = "/cart/get-cart";
+        return axiosClient.get(url);
+    },
 };

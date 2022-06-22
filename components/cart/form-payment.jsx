@@ -1,7 +1,11 @@
 import * as React from "react";
-import { Form, Select, Input, message } from "antd";
+import { Form, Select, Input } from "antd";
+import { useRouter } from "next/router";
+import styled from "styled-components";
+import vnmToAlphabet from "vnm-to-alphabet";
 
 import { Button } from "@/layout";
+import { useAuth } from "@/hooks";
 
 export const FormPayment = ({
     dataCity,
@@ -13,6 +17,9 @@ export const FormPayment = ({
     handlePostCart,
     loading,
 }) => {
+    const router = useRouter();
+    const { profile } = useAuth();
+
     const onFinishPostCart = ({ city, commune, district, phone }) => {
         const Total = dataCart.reduce(
             (previousValue, currentValue) => (previousValue += currentValue.quantity * currentValue.product.price),
@@ -31,7 +38,7 @@ export const FormPayment = ({
 
     return (
         <Form layout="vertical" onFinish={onFinishPostCart}>
-            <div className="grid grid-cols-1 gap-x-4 md:grid-cols-2">
+            <div className="grid grid-cols-1 gap-x-4">
                 {dataCity ? (
                     <Form.Item
                         className="grid"
@@ -39,18 +46,24 @@ export const FormPayment = ({
                         label="Tỉnh/Thành Phố"
                         rules={[{ required: true, message: "Vui lòng chọn Tỉnh/Thành phố!" }]}
                     >
-                        <Select
+                        <StyledSelect
+                            showSearch
+                            optionFilterProp="children"
+                            filterOption={(input, option) =>
+                                vnmToAlphabet(option.children.toLowerCase(), "lowercase").includes(
+                                    vnmToAlphabet(input.toLowerCase(), "lowercase")
+                                )
+                            }
                             placeholder="Chọn Tỉnh/Thành Phố..."
                             allowClear
                             onChange={(_, index) => setDistrict(index.key)}
-                            tokenSeparators={[","]}
                         >
                             {dataCity.map((city) => (
                                 <Select.Option value={city.name} key={city.code}>
                                     {city.name}
                                 </Select.Option>
                             ))}
-                        </Select>
+                        </StyledSelect>
                     </Form.Item>
                 ) : (
                     <Form.Item
@@ -59,12 +72,11 @@ export const FormPayment = ({
                         label="Tỉnh/Thành Phố"
                         rules={[{ required: true, message: "Vui lòng chọn Tỉnh/Thành Phố!" }]}
                     >
-                        <Select
+                        <StyledSelect
                             placeholder="Tỉnh/Thành Phố..."
                             allowClear
                             fieldNames={{ label: "", value: "" }}
-                            tokenSeparators={[","]}
-                        ></Select>
+                        ></StyledSelect>
                     </Form.Item>
                 )}
                 {dataDistrict ? (
@@ -74,17 +86,24 @@ export const FormPayment = ({
                         label="Quận/Huyện"
                         rules={[{ required: true, message: "Vui lòng chọn Quận/Huyện!" }]}
                     >
-                        <Select
+                        <StyledSelect
                             placeholder="Chọn Quận/Huyện..."
                             allowClear
                             onChange={(_, index) => setCommune(index.key)}
+                            showSearch
+                            optionFilterProp="children"
+                            filterOption={(input, option) =>
+                                vnmToAlphabet(option.children.toLowerCase(), "lowercase").includes(
+                                    vnmToAlphabet(input.toLowerCase(), "lowercase")
+                                )
+                            }
                         >
                             {dataDistrict.districts.map((dis) => (
                                 <Select.Option value={dis.name} key={dis.code}>
                                     {dis.name}
                                 </Select.Option>
                             ))}
-                        </Select>
+                        </StyledSelect>
                     </Form.Item>
                 ) : (
                     <Form.Item
@@ -93,7 +112,7 @@ export const FormPayment = ({
                         label="Quận/Huyện"
                         rules={[{ required: true, message: "Vui lòng chọn Quận/Huyện!" }]}
                     >
-                        <Select placeholder="Chọn Quận/Huyện..." allowClear></Select>
+                        <StyledSelect placeholder="Chọn Quận/Huyện..." allowClear></StyledSelect>
                     </Form.Item>
                 )}
                 {dataCommune ? (
@@ -103,13 +122,23 @@ export const FormPayment = ({
                         label="Xã/Thị Trấn"
                         rules={[{ required: true, message: "Vui lòng chọn Xã/Thị trấn" }]}
                     >
-                        <Select placeholder="Chọn Xã/Thị Trấn..." allowClear>
+                        <StyledSelect
+                            placeholder="Chọn Xã/Thị Trấn..."
+                            allowClear
+                            showSearch
+                            optionFilterProp="children"
+                            filterOption={(input, option) =>
+                                vnmToAlphabet(option.children.toLowerCase(), "lowercase").includes(
+                                    vnmToAlphabet(input.toLowerCase(), "lowercase")
+                                )
+                            }
+                        >
                             {dataCommune.wards.map((wards) => (
                                 <Select.Option value={wards.name} key={wards.code}>
                                     {wards.name}
                                 </Select.Option>
                             ))}
-                        </Select>
+                        </StyledSelect>
                     </Form.Item>
                 ) : (
                     <Form.Item
@@ -118,7 +147,7 @@ export const FormPayment = ({
                         label="Xã/Thị Trấn"
                         rules={[{ required: true, message: "Vui lòng chọn Xã/Thị trấn" }]}
                     >
-                        <Select placeholder="Chọn Xã/Thị Trấn..." allowClear></Select>
+                        <StyledSelect placeholder="Chọn Xã/Thị Trấn..." allowClear></StyledSelect>
                     </Form.Item>
                 )}
                 <Form.Item
@@ -133,12 +162,35 @@ export const FormPayment = ({
                         },
                     ]}
                 >
-                    <Input placeholder="Nhập số điện thoại" />
+                    <StyledInput placeholder="Nhập số điện thoại" />
                 </Form.Item>
             </div>
             <div className="mt-4 flex justify-center">
-                <Button loading={loading} label="Đặt hàng ngay" className="w-full max-w-lg sm:max-w-xs" size="sm" />
+                <Button
+                    loading={loading}
+                    label="Đặt hàng ngay"
+                    className="w-full"
+                    size="sm"
+                    Element={profile ? "button" : "p"}
+                    onClick={() => !profile && router.push("/login")}
+                />
             </div>
         </Form>
     );
 };
+
+const StyledSelect = styled(Select)`
+    & > .ant-select-selector {
+        border-radius: 0.25rem !important;
+        padding: 0px 10px !important;
+        height: 35px !important;
+        border: 2px solid #ced4da !important;
+    }
+`;
+
+const StyledInput = styled(Input)`
+    border-radius: 0.25rem !important;
+    padding: 0px 10px !important;
+    height: 35px !important;
+    border: 2px solid #ced4da !important;
+`;

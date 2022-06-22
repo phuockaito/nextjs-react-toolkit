@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { message, notification } from "antd";
-import { postCartAPI } from "./path-api";
+import { postCartAPI, getCartAPI } from "./path-api";
 
 const getCart = () => {
     if (typeof window !== "undefined") return JSON.parse(window.localStorage.getItem("cart")) || [];

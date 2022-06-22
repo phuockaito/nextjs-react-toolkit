@@ -2,8 +2,7 @@ import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import useSWR from "swr";
 
-import { postCartAPI } from "@/app/slices";
-import { addToCartReducers, updateCartProduct, deleteCartProduct } from "@/app/slices";
+import { addToCartReducers, updateCartProduct, deleteCartProduct, getCartAPI, postCartAPI } from "@/app/slices";
 import { selectCart } from "@/selector";
 
 const options = { revalidateOnFocus: false, dedupingInterval: 60 * 60 * 1000 };
@@ -32,12 +31,14 @@ export const useCart = (props) => {
     const handleUpdateCartReducers = React.useCallback((product) => dispatch(updateCartProduct(product)), [dispatch]);
     const handleDeleteCartReducers = React.useCallback((index) => dispatch(deleteCartProduct(index)), [dispatch]);
     const handlePostCart = React.useCallback((cart) => dispatch(postCartAPI(cart)), [dispatch]);
+    const handlegetCart = React.useCallback(() => dispatch(getCartAPI()), [dispatch]);
 
     return {
         handleAddToCartReducers,
         handleUpdateCartReducers,
         handleDeleteCartReducers,
         handlePostCart,
+        handlegetCart,
         storeCart,
         dataCity,
         dataDistrict,
