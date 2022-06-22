@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { message, notification } from "antd";
+import { postCartAPI } from "./path-api";
 
 const getCart = () => {
     if (typeof window !== "undefined") return JSON.parse(window.localStorage.getItem("cart")) || [];
@@ -9,6 +10,7 @@ export const sliceCart = createSlice({
     name: "cart",
     initialState: {
         dataCart: getCart(),
+        loading: false,
     },
     reducers: {
         addToCartReducers: (state, action) => {
@@ -72,6 +74,21 @@ export const sliceCart = createSlice({
             }
             message.success("Xóa Thành Công", 1.5);
             localStorage.setItem("cart", JSON.stringify(dataCart));
+        },
+    },
+    extraReducers: {
+        [postCartAPI.pending]: (state) => {
+            state.loading = true;
+        },
+        [postCartAPI.fulfilled]: (state) => {
+            state.loading = false;
+            message.success("Đặt hàng thành công");
+            state.dataCart = [];
+            localStorage.removeItem("cart");
+        },
+        [postCartAPI.rejected]: (state) => {
+            state.loading = false;
+            message.error("Đặt hàng thất bại");
         },
     },
 });

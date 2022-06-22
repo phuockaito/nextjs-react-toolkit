@@ -60,7 +60,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                     <div className="flex gap-4">
                         <div className="flex flex-1 flex-col gap-2">
                             <div>
-                                <h3 className="text-xl font-semibold capitalize text-[#212427]">
+                                <h3 className="mb-2 text-xl font-semibold capitalize text-[#212427]">
                                     Thông tin sản phẩm
                                     <span className="ml-1 font-light" />
                                 </h3>
@@ -82,7 +82,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                                 </p>
                             </div>
                             <div>
-                                <h3 className="text-xl font-semibold capitalize text-[#212427]">
+                                <h3 className="mb-2 text-xl font-semibold capitalize text-[#212427]">
                                     Mô Tả Sản Phẩm
                                     <span className="material-symbols-outlined" />
                                 </h3>

@@ -35,7 +35,7 @@ body {
     font-family: "Josefin Sans", sans-serif !important;
     font-family: "Mukta", sans-serif !important;
     font-family: "Roboto Flex", sans-serif !important;
-    font-size: 1rem;
+    font-size: 1rem !important;
 }
 .shadow-card {
     box-shadow: 0 3px 6px -4px rgb(0 0 0 / 12%), 0 6px 16px 0 rgb(0 0 0 / 8%), 0 9px 28px 8px rgb(0 0 0 / 5%);
