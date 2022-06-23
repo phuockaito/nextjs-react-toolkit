@@ -5,13 +5,19 @@ import { WrapperCard, Section } from "@/layout";
 import { apiProduct } from "@/api-client";
 
 export const SuggestedProduct = ({ keyword }) => {
-    const { data: dataSuggested } = useSWR("get-suggested-keyword", () =>
-        apiProduct.getProductType({
-            items: 8,
-            name: keyword,
-            page: 1,
-            sort_price: 0,
-        })
+    const { data: dataSuggested } = useSWR(
+        "get-suggested-keyword",
+        () =>
+            apiProduct.getProductType({
+                items: 8,
+                name: keyword,
+                page: 1,
+                sort_price: 0,
+            }),
+        {
+            revalidateOnFocus: false,
+            dedupingInterval: 60 * 60 * 1000,
+        }
     );
     return (
         <React.Fragment>

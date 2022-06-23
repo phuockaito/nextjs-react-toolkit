@@ -9,6 +9,7 @@ export const Button = ({
     size = "md",
     Element = "button",
     onClick,
+    disabled,
 }) => {
     return (
         <Element
@@ -20,7 +21,7 @@ export const Button = ({
                 size == "sm" && "p-2 sm:p-3",
                 size == "md" && "p-3"
             )}
-            disabled={loading}
+            disabled={loading || disabled}
             onClick={onClick && onClick}
         >
             {loading && <AiOutlineLoading className="mr-2 animate-spin text-[1rem]" />}

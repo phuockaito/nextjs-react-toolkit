@@ -20,6 +20,7 @@ const Cart = () => {
     } = useCart({
         code_district: district,
         code_commune: commune,
+        revalidateOnMount: true,
     });
 
     return (

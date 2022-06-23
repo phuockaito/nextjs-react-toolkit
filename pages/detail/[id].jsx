@@ -4,23 +4,24 @@ import NumberFormat from "react-number-format";
 import clsx from "clsx";
 import { message } from "antd";
 import NoSSR from "react-no-ssr";
+import useSWR from "swr";
 
-import { apiProduct } from "@/api-client";
+import { apiProduct, apiComment } from "@/api-client";
 import { MetaTag, Image, LinkHref } from "@/customize";
 import { Section } from "@/layout";
-import { WrapperComment, Header, SuggestedProduct } from "@/components";
+import { WrapperComment, Header, SuggestedProduct, FormComment } from "@/components";
 
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
-import { useComment, useCart } from "@/hooks";
-
+import { useCart } from "@/hooks";
+// const { id_product, content, start, type, id_comment } = req.body;
 const DetailId = ({ data, id, suggested_keyword }) => {
     const router = useRouter();
     const _page_comment = router.query?._page_comment || 1;
 
     const [poster, setPoster] = React.useState(0);
     const [size, setSize] = React.useState(null);
-    const { dataComment } = useComment(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
+    const { data: dataComment, mutate } = useSWR(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
 
     const { handleAddToCartReducers } = useCart();
 
@@ -187,6 +188,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                 </div>
             </Section>
             <NoSSR>
+                <FormComment id={id} mutate={mutate} />
                 <WrapperComment dataComment={dataComment} _page_comment={_page_comment} id_product={data._id} />
                 <SuggestedProduct keyword={suggested_keyword} />
             </NoSSR>

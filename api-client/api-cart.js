@@ -9,4 +9,8 @@ export const apiCart = {
         const url = "/cart/get-cart";
         return axiosClient.get(url);
     },
+    deleteCart: (id) => {
+        const url = `/cart/delete-cart?id_cart=${id}`;
+        return axiosClient.delete(url);
+    },
 };

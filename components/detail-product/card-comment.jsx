@@ -27,7 +27,7 @@ export const CardComment = ({ dataComment }) => {
                                         <span className="text-[0.9rem]">{comment.editComment && "(đã chỉnh sửa)"}</span>
                                     </p>
                                 </h3>
-                                <div>
+                                {comment.start > 0 && (
                                     <StarRatings
                                         starDimension="18px"
                                         starRatedColor="#ff8b05"
@@ -36,7 +36,7 @@ export const CardComment = ({ dataComment }) => {
                                         starEmptyColor="white"
                                         numberOfStars={comment.start}
                                     />
-                                </div>
+                                )}
                             </div>
                             <span className="text-[1rem]">{comment.content}</span>
                             {comment?.reply && (

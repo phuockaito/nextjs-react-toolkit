@@ -9,7 +9,6 @@ export const Search = () => {
     const { register, handleSubmit } = useForm();
 
     const submitSearch = ({ search }) => {
-        console.log("search", search);
         router.push(`/search/${search}`);
     };
 
