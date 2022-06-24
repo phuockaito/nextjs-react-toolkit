@@ -6,14 +6,14 @@ import { message } from "antd";
 import NoSSR from "react-no-ssr";
 import useSWR from "swr";
 
-import { apiProduct, apiComment } from "@/api-client";
+import { apiProduct } from "@/api-client";
 import { MetaTag, Image, LinkHref } from "@/customize";
 import { Section } from "@/layout";
 import { WrapperComment, Header, SuggestedProduct, FormComment } from "@/components";
 
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
-import { useCart } from "@/hooks";
+import { useAuth, useCart } from "@/hooks";
 // const { id_product, content, start, type, id_comment } = req.body;
 const DetailId = ({ data, id, suggested_keyword }) => {
     const router = useRouter();
@@ -23,6 +23,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
     const [size, setSize] = React.useState(null);
     const { data: dataComment, mutate } = useSWR(`comments/get-comments?_id_product=${id}&page=${_page_comment}`);
 
+    const { profile } = useAuth();
     const { handleAddToCartReducers } = useCart();
 
     const createMarkup = () => {
@@ -188,7 +189,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                 </div>
             </Section>
             <NoSSR>
-                <FormComment id={id} mutate={mutate} />
+                {profile && <FormComment id={id} mutate={mutate} dataComment={dataComment} />}
                 <WrapperComment dataComment={dataComment} _page_comment={_page_comment} id_product={data._id} />
                 <SuggestedProduct keyword={suggested_keyword} />
             </NoSSR>

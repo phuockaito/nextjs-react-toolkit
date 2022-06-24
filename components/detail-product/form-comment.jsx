@@ -4,26 +4,34 @@ import { Form, Input, Rate } from "antd";
 import { Section, Button } from "@/layout";
 import { apiComment } from "@/api-client";
 
-export const FormComment = ({ id, mutate }) => {
+export const FormComment = ({ id, mutate, dataComment }) => {
     const [form] = Form.useForm();
 
     const handleSubmitComment = async ({ rate, comment }) => {
         setLoading(true);
-        const result = await apiComment.postComment({
+        console.log({ dataComment });
+        const { data } = await apiComment.postComment({
             id_product: id,
             start: rate || 0,
             content: comment.trim(),
         });
-        if (result) {
+        if (data) {
             setLoading(false);
             form.resetFields();
-            await mutate();
+            const newData = dataComment.data;
+            const payload = {
+                ...dataComment,
+                data: [data.comment, ...newData],
+                length: dataComment.length + 1,
+            };
+            mutate(payload, false);
         }
     };
 
     const [loading, setLoading] = React.useState(false);
     return (
         <Section>
+            <h1 className="text-xl font-semibold capitalize text-[#212427]">Phản hồi của bạn</h1>
             <Form onFinish={handleSubmitComment} form={form}>
                 <Form.Item name="rate">
                     <Rate />

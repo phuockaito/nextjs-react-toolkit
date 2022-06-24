@@ -7,6 +7,7 @@ import { CardComment } from "./card-comment";
 
 export const WrapperComment = ({ dataComment, _page_comment, id_product }) => {
     const router = useRouter();
+    console.log("dataComment", dataComment);
 
     if (!dataComment) {
         return (

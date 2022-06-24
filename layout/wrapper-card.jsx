@@ -125,9 +125,9 @@ export const WrapperCard = ({
                         ))
                     ) : (
                         <>
-                            {[...Array(4)].map((_, index) => (
+                            {[...Array(8)].map((_, index) => (
                                 <div
-                                    className="md h-[355px] w-[305px] animate-pulse rounded-md bg-slate-300"
+                                    className="h-[355px] w-[280px] animate-pulse rounded-md bg-slate-300"
                                     key={index.toString()}
                                 />
                             ))}
