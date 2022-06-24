@@ -3,17 +3,18 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import clsx from "clsx";
+import { useRouter } from "next/router";
 
 import { Button, Input, LoginRegister } from "@/layout";
 import { VscLock } from "react-icons/vsc";
 import { HiOutlineMail } from "react-icons/hi";
 import { MetaTag } from "@/customize";
-import { apiAccount } from "@/api-client";
 
 import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
+import { useAuth } from "@/hooks";
 
 const schema = yup.object().shape({
-    username: yup
+    name: yup
         .string()
         .required("Vui lòng nhập họ và tên của bạn!")
         .min(4, "Họ và cần dài ít nhất 4 ký tự")
@@ -43,6 +44,12 @@ const Register = () => {
     } = useForm({
         resolver: yupResolver(schema),
     });
+
+    const { handleRegister } = useAuth({
+        revalidateOnMount: false,
+    });
+
+    const router = useRouter();
     const [infoLogin, setInfoLogin] = React.useState({
         message: null,
         loading: false,
@@ -56,16 +63,12 @@ const Register = () => {
             isSuccess: false,
         });
         try {
-            const { message } = await apiAccount.register(data);
-            setInfoLogin({
-                message: message,
-                loading: false,
-                isSuccess: true,
-            });
-            reset();
+            await handleRegister(data);
+            router.replace("/");
         } catch (error) {
+            console.log("error", error);
             setInfoLogin({
-                message: error.response.data.message,
+                message: error.response?.data?.message,
                 loading: false,
                 isSuccess: false,
             });
@@ -98,12 +101,12 @@ const Register = () => {
                             Icon={HiOutlineMail}
                             label="Họ và tên"
                             placeholder="Nhập họ và tên"
-                            name="username"
+                            name="name"
                             validate={register}
                             validateOptions={{
                                 required: true,
                             }}
-                            errors={errors && errors.username?.message}
+                            errors={errors && errors.name?.message}
                         />
                         <Input
                             size="md"
@@ -177,8 +180,6 @@ export const getServerSideProps = async (context) => {
         };
     }
     return {
-        props: {
-            access_token: access_token,
-        },
+        props: {},
     };
 };

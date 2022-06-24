@@ -9,15 +9,18 @@ export const useAuth = (options) => {
         error,
         mutate,
     } = useSWR("user/profile", {
-        dedupingInterval: 60 * 60 * 1000, // 1hr
+        dedupingInterval: 60 * 60 * 1000,
         revalidateOnFocus: false,
         ...options,
     });
 
-    const firstLoading = profile === undefined && error === undefined;
-
     const handleLogin = async (data) => {
         await apiAccount.login(data);
+        await mutate();
+    };
+
+    const handleRegister = async (data) => {
+        await apiAccount.register(data);
         await mutate();
     };
 
@@ -38,8 +41,8 @@ export const useAuth = (options) => {
         handleLogout,
         handleGoogleLogin,
         handleChangePassword,
+        handleRegister,
         profile: profile?.user,
         error,
-        firstLoading,
     };
 };

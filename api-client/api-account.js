@@ -13,7 +13,7 @@ export const apiAccount = {
         return axiosClient.post(url);
     },
     register: (data) => {
-        const url = "user/register";
+        const url = "user/registers";
         return axiosClient.post(url, data);
     },
     googleLogin: (tokenId) => {

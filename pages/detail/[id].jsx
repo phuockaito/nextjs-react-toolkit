@@ -189,7 +189,12 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                 </div>
             </Section>
             <NoSSR>
-                {profile && <FormComment id={id} mutate={mutate} dataComment={dataComment} />}
+                {profile && (
+                    <Section>
+                        <h1 className="text-xl font-semibold capitalize text-[#212427]">Phản hồi của bạn</h1>
+                        <FormComment id={id} mutate={mutate} dataComment={dataComment} />
+                    </Section>
+                )}
                 <WrapperComment
                     dataComment={dataComment}
                     _page_comment={_page_comment}

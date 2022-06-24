@@ -30,7 +30,7 @@ export default function Home({ productNew, productType, productSlider }) {
 
 Home.getLayout = (page) => <Header>{page}</Header>;
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async () => {
     const { product } = await apiProduct.getProduct({ limit: 8 });
 
     const product_type = await apiProduct.getProductType({

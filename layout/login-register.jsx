@@ -18,7 +18,9 @@ export const LoginRegister = ({
     description_page,
 }) => {
     const [loading, setLoading] = React.useState(false);
-    const { handleGoogleLogin } = useAuth();
+    const { handleGoogleLogin } = useAuth({
+        revalidateOnMount: false,
+    });
     const responseGoogle = async ({ tokenId }) => {
         setLoading(true);
         try {

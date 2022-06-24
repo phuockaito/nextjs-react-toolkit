@@ -1,13 +1,16 @@
+import * as React from "react";
 import moment from "moment";
 import Image from "next/image";
 import StarRatings from "react-star-ratings";
 import Microlink from "@microlink/react";
 import styled from "styled-components";
+import { Rate } from "antd";
 
 import { useAuth } from "@/hooks";
-import { VscTrash } from "react-icons/vsc";
+import { VscTrash, VscEdit } from "react-icons/vsc";
+import { FormComment } from "./form-comment";
 
-export const CardComment = ({ dataComment, onDeleteComment }) => {
+export const CardComment = ({ dataComment, onDeleteComment, mutate }) => {
     const { profile } = useAuth();
 
     const contentClickHandler = (str) => {
@@ -16,6 +19,8 @@ export const CardComment = ({ dataComment, onDeleteComment }) => {
             return match.map((url, index) => <CustomMicroLink url={url} key={index.toString()} />);
         }
     };
+
+    const [idCommentEdit, setIdCommentEdit] = React.useState(null);
 
     return (
         <div className="divide-y-[1.5px]">
@@ -43,37 +48,47 @@ export const CardComment = ({ dataComment, onDeleteComment }) => {
                                             </span>
                                         </p>
                                     </h3>
-                                    {comment.start > 0 && (
-                                        <StarRatings
-                                            starDimension="18px"
-                                            starRatedColor="#ff8b05"
-                                            starHoverColor="#ff8b05"
-                                            rating={5}
-                                            starEmptyColor="white"
-                                            numberOfStars={comment.start}
-                                        />
+                                    {comment.start > 0 && comment._id !== idCommentEdit && (
+                                        <Rate value={comment.start} disabled />
                                     )}
                                 </div>
                                 {profile && profile._id === comment.id_user && comment?.reply && (
-                                    <div
-                                        className="cursor-pointer opacity-0 group-hover:opacity-100"
-                                        onClick={() =>
-                                            onDeleteComment({
-                                                id_comment: comment._id,
-                                                id_product: comment.id_product,
-                                            })
-                                        }
-                                    >
-                                        <VscTrash className="text-lg text-slate-500" />
-                                    </div>
+                                    <>
+                                        <div className="flex cursor-pointer gap-2 opacity-0 group-hover:opacity-100">
+                                            <VscTrash
+                                                className="text-lg text-red-500"
+                                                onClick={() =>
+                                                    onDeleteComment({
+                                                        id_comment: comment._id,
+                                                        id_product: comment.id_product,
+                                                    })
+                                                }
+                                            />
+                                            <VscEdit
+                                                className="text-lg text-blue-500"
+                                                onClick={() => setIdCommentEdit(comment._id)}
+                                            />
+                                        </div>
+                                    </>
                                 )}
                             </div>
-                            <div
-                                className="break-all"
-                                dangerouslySetInnerHTML={{
-                                    __html: comment.content.replace(/(\r\n|\n|\r)/gm, "<br />"),
-                                }}
-                            />
+                            {comment._id === idCommentEdit ? (
+                                <FormComment
+                                    dataComment={dataComment}
+                                    mutate={mutate}
+                                    setIdCommentEdit={setIdCommentEdit}
+                                    initialValues={{ rate: comment.start, comment: comment.content }}
+                                    _id_comment={comment._id}
+                                    id_product={comment.id_product}
+                                />
+                            ) : (
+                                <div
+                                    className="break-all"
+                                    dangerouslySetInnerHTML={{
+                                        __html: comment.content.replace(/(\r\n|\n|\r)/gm, "<br />"),
+                                    }}
+                                />
+                            )}
                             {contentClickHandler(comment.content)}
                             {comment?.reply && (
                                 <div>

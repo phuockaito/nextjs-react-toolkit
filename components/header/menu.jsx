@@ -20,7 +20,7 @@ export const Menu = () => {
 
     if (!data || error) {
         return (
-            <header className="sticky top-0 z-[5] h-20 overflow-hidden border-b bg-white px-6 shadow-md">
+            <header className="sticky top-0 z-[5] h-20 border-b bg-white px-6 shadow-md">
                 <div className=" flex h-full items-center gap-4">
                     {[...new Array(5)].map((_, index) => (
                         <div key={index.toString()} className="h-5 w-28 animate-pulse rounded bg-slate-400" />
@@ -31,7 +31,7 @@ export const Menu = () => {
     }
 
     return (
-        <header className="sticky top-0 z-[5] overflow-hidden border-b bg-white px-4 py-2 shadow-md">
+        <header className="sticky top-0 z-[5] border-b bg-white px-4 py-2 shadow-md">
             <nav className="relative block">
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-4">

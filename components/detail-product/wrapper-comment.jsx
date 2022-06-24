@@ -62,7 +62,11 @@ export const WrapperComment = ({ dataComment, _page_comment, id_product, mutate 
                     <div className="flex flex-col gap-4">
                         {dataComment.data.length > 0 ? (
                             <div>
-                                <CardComment dataComment={dataComment.data} onDeleteComment={handleDeleteComment} />
+                                <CardComment
+                                    dataComment={dataComment.data}
+                                    onDeleteComment={handleDeleteComment}
+                                    mutate={mutate}
+                                />
                                 {dataComment.data.length < dataComment.length && (
                                     <span
                                         className="cursor-pointer hover:underline"

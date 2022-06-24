@@ -1,4 +1,4 @@
-import { Image as ImageAntd } from "antd";
+import { Image as ImageAntd, Rate } from "antd";
 import clsx from "clsx";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -8,8 +8,6 @@ import { filterPrice } from "@/const";
 import { LinkHref } from "@/customize";
 import { Section, Coating } from ".";
 import { usePreviewImage } from "@/hooks";
-
-import { AiFillStar } from "react-icons/ai";
 
 export const WrapperCard = ({
     title,
@@ -65,7 +63,7 @@ export const WrapperCard = ({
                             <div key={item._id} className="rounded border border-[#e8dfec] p-4" data-aos="zoom-in">
                                 {item.rating > 0 ? (
                                     <div className="flex items-center gap-1">
-                                        <AiFillStar className="text-[#ff8b05]" />
+                                        <Rate value={1} count={1} disabled className="mb-1" />
                                         <p className="flex gap-1 text-[0.9rem] text-slate-500">
                                             {(item.rating / item.numReviews).toFixed(1)}
                                             <span>/ 5</span>
@@ -73,7 +71,7 @@ export const WrapperCard = ({
                                     </div>
                                 ) : (
                                     <p className="flex items-center gap-1 truncate text-[0.9rem] text-slate-500">
-                                        <AiFillStar className="text-[#ff8b05]" />
+                                        <Rate value={1} count={1} disabled className="mb-1" />
                                         Chưa có đánh giá
                                     </p>
                                 )}
