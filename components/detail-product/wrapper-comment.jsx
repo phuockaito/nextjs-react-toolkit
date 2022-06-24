@@ -4,11 +4,10 @@ import NoSSR from "react-no-ssr";
 
 import { Section } from "@/layout";
 import { CardComment } from "./card-comment";
+import { apiComment } from "@/api-client";
 
-export const WrapperComment = ({ dataComment, _page_comment, id_product }) => {
+export const WrapperComment = ({ dataComment, _page_comment, id_product, mutate }) => {
     const router = useRouter();
-    console.log("dataComment", dataComment);
-
     if (!dataComment) {
         return (
             <Section className="grid gap-2">
@@ -39,6 +38,22 @@ export const WrapperComment = ({ dataComment, _page_comment, id_product }) => {
             </Section>
         );
     }
+
+    const handleDeleteComment = async ({ id_comment, id_product }) => {
+        const newData = dataComment.data.filter(({ _id }) => _id !== id_comment);
+        const { data } = await apiComment.deleteComment({ _id_product: id_product, id: id_comment });
+        if (data) {
+            mutate(
+                {
+                    ...dataComment,
+                    data: newData,
+                    length: dataComment.data.length - 1,
+                },
+                false
+            );
+        }
+    };
+
     return (
         <React.Fragment>
             <NoSSR>
@@ -47,7 +62,7 @@ export const WrapperComment = ({ dataComment, _page_comment, id_product }) => {
                     <div className="flex flex-col gap-4">
                         {dataComment.data.length > 0 ? (
                             <div>
-                                <CardComment dataComment={dataComment.data} />
+                                <CardComment dataComment={dataComment.data} onDeleteComment={handleDeleteComment} />
                                 {dataComment.data.length < dataComment.length && (
                                     <span
                                         className="cursor-pointer hover:underline"

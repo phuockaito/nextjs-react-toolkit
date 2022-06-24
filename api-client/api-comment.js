@@ -9,4 +9,9 @@ export const apiComment = {
         const url = "comments/create-comments";
         return axiosClient.post(url, payload);
     },
+    deleteComment: (params) => {
+        console.log("params", params);
+        const url = "comments/delete-comments";
+        return axiosClient.delete(url, { params });
+    },
 };

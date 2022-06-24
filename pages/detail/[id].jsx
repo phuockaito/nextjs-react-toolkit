@@ -190,7 +190,12 @@ const DetailId = ({ data, id, suggested_keyword }) => {
             </Section>
             <NoSSR>
                 {profile && <FormComment id={id} mutate={mutate} dataComment={dataComment} />}
-                <WrapperComment dataComment={dataComment} _page_comment={_page_comment} id_product={data._id} />
+                <WrapperComment
+                    dataComment={dataComment}
+                    _page_comment={_page_comment}
+                    id_product={data._id}
+                    mutate={mutate}
+                />
                 <SuggestedProduct keyword={suggested_keyword} />
             </NoSSR>
         </React.Fragment>
