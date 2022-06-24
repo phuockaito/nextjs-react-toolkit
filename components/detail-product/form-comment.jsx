@@ -9,7 +9,6 @@ export const FormComment = ({ id, mutate, dataComment }) => {
 
     const handleSubmitComment = async ({ rate, comment }) => {
         setLoading(true);
-        console.log({ dataComment });
         const { data } = await apiComment.postComment({
             id_product: id,
             start: rate || 0,
