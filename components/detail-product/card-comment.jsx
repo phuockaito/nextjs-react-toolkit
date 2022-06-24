@@ -1,7 +1,6 @@
 import * as React from "react";
 import moment from "moment";
 import Image from "next/image";
-import StarRatings from "react-star-ratings";
 import Microlink from "@microlink/react";
 import styled from "styled-components";
 import { Rate } from "antd";
@@ -99,7 +98,7 @@ export const CardComment = ({ dataComment, onDeleteComment, mutate }) => {
                     </div>
                 </div>
             ))}
-        </div>
+            </div>
     );
 };
 const CustomMicroLink = styled(Microlink)`

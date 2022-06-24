@@ -14,7 +14,7 @@ import { WrapperComment, Header, SuggestedProduct, FormComment } from "@/compone
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
 import { useAuth, useCart } from "@/hooks";
-// const { id_product, content, start, type, id_comment } = req.body;
+
 const DetailId = ({ data, id, suggested_keyword }) => {
     const router = useRouter();
     const _page_comment = router.query?._page_comment || 1;
@@ -178,7 +178,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                                     : "Chưa có phản hồi"}
                             </span>
                             <div className="flex basis-4/12 items-center justify-center gap-1 text-center">
-                                <AiFillStar className="text-[#ff8b05]" />
+                                <AiFillStar className="text-[#fadb14]" />
                                 <p className="flex gap-1 text-[0.9rem] text-slate-600">
                                     {data.rating > 0 ? (data.rating / data.numReviews).toFixed(1) : 0}
                                     <span>/ 5</span>
