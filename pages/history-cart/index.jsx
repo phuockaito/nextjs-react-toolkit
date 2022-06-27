@@ -6,7 +6,7 @@ import NumberFormat from "react-number-format";
 import { Header } from "@/components";
 import { apiCart } from "@/api-client";
 import { Image, LinkHref } from "@/customize";
-import { VscTrash, VscEdit } from "react-icons/vsc";
+import { VscTrash } from "react-icons/vsc";
 
 const HistoryCart = () => {
     const { data, mutate } = useSWR("/history-cart", () => apiCart.getCart());
@@ -83,9 +83,6 @@ const HistoryCart = () => {
                                             onClick={() => handleDeleteCart(items._id)}
                                         >
                                             <VscTrash className="text-red-600" />
-                                        </div>
-                                        <div className="flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded border border-blue-600">
-                                            <VscEdit className="text-blue-600" />
                                         </div>
                                     </div>
                                 </div>

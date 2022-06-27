@@ -4,12 +4,12 @@ import useSWR from "swr";
 import { WrapperCard, Section } from "@/layout";
 import { apiProduct } from "@/api-client";
 
-export const SuggestedProduct = ({ keyword }) => {
+export const SuggestedProduct = ({ keyword, id }) => {
     const { data: dataSuggested } = useSWR(
         "get-suggested-keyword",
         () =>
             apiProduct.getProductType({
-                items: 8,
+                items: 9,
                 name: keyword,
                 page: 1,
                 sort_price: 0,
@@ -19,9 +19,11 @@ export const SuggestedProduct = ({ keyword }) => {
             dedupingInterval: 60 * 60 * 1000,
         }
     );
+
+    const filterData = dataSuggested?.data.filter((item) => item._id !== id);
     return (
         <React.Fragment>
-            <WrapperCard data={dataSuggested?.data} title="Sản phẩm tương tự" />
+            <WrapperCard data={filterData} title="Sản phẩm tương tự" />
         </React.Fragment>
     );
 };

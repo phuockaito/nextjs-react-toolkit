@@ -1,5 +1,4 @@
 .menu {
-    display: flex;
     height: 100%;
 }
 .menu li:hover,
@@ -55,4 +54,37 @@
 .menu-item:hover .site-nav-hover-menu {
     opacity: 1;
     visibility: visible;
+}
+
+@media screen and (max-width: 1400px) {
+    .menu-item{
+        padding: 18px 10px;
+    }
+}
+
+.menu-moblie{
+    display: grid;
+}
+
+.menu-moblie .item{
+    padding: 12px;
+    font-size: 1.2rem;
+}
+
+.menu-moblie .item .sub-menu{
+    padding: 0 12px;
+}
+
+.menu-moblie .item .sub-menu li{
+    padding:4px 8px;
+    border-radius: 0.25rem;
+    text-transform: capitalize;
+}
+
+.menu-moblie .item .sub-menu li a{
+    width:100%;
+    display: flex;
+}
+.menu-moblie .item .sub-menu li:hover{
+    background: #f5f5f5;
 }

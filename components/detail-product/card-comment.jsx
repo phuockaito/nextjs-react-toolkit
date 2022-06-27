@@ -98,7 +98,7 @@ export const CardComment = ({ dataComment, onDeleteComment, mutate }) => {
                     </div>
                 </div>
             ))}
-            </div>
+        </div>
     );
 };
 const CustomMicroLink = styled(Microlink)`

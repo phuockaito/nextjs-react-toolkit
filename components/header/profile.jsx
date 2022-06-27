@@ -1,11 +1,11 @@
 import * as React from "react";
-import { Dropdown, Modal, message, Badge } from "antd";
+import { Dropdown, Modal, message } from "antd";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/router";
 
-import { AiOutlineShoppingCart, AiOutlineHistory } from "react-icons/ai";
+import { AiOutlineShoppingCart } from "react-icons/ai";
 import { Image } from "@/customize";
 import { VscSignOut, VscLock } from "react-icons/vsc";
 import { RiArrowDropDownLine } from "react-icons/ri";
@@ -80,10 +80,6 @@ export const Profile = ({ avatar, name, email }) => {
                                 >
                                     <AiOutlineShoppingCart className="text-[1rem]" />
                                     <h1>Lịch sử mua hàng</h1>
-                                </div>
-                                <div className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]">
-                                    <AiOutlineHistory className="text-[1rem]" />
-                                    <h1>Nhật ký hoạt động</h1>
                                 </div>
                                 <div
                                     className="flex cursor-pointer items-center gap-2 px-[24px] py-[8px] hover:bg-[#f8f9fa]"

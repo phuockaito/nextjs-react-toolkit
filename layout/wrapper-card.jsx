@@ -64,7 +64,6 @@ export const WrapperCard = ({
                             <div key={item._id} className="rounded border border-[#e8dfec] p-4" data-aos="zoom-in">
                                 {item.rating > 0 ? (
                                     <div className="flex items-center gap-1">
-
                                         <AiFillStar className="text-[#fadb14]" />
                                         <p className="flex gap-1 text-[0.9rem] text-slate-500">
                                             {(item.rating / item.numReviews).toFixed(1)}

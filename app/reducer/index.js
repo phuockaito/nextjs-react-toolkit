@@ -1,7 +1,5 @@
-import { sliceProfile, sliceMenu, sliceCart } from "../slices";
+import { sliceCart } from "../slices";
 
 export const reducer = {
-    profile: sliceProfile.reducer,
-    menu: sliceMenu.reducer,
     cart: sliceCart.reducer,
 };
