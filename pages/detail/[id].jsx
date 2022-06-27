@@ -180,7 +180,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                             <div className="flex basis-4/12 items-center justify-center gap-1 text-center">
                                 <AiFillStar className="text-[#fadb14]" />
                                 <p className="flex gap-1 text-[0.9rem] text-slate-600">
-                                    {data.rating > 0 ? (data.rating / data.numReviews).toFixed(1) : 0}
+                                    {dataComment?.reviewRating > 0 ? (dataComment.reviewRating).toFixed(1) : 0}
                                     <span>/ 5</span>
                                 </p>
                             </div>
