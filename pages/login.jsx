@@ -66,14 +66,15 @@ const Login = () => {
     return (
         <React.Fragment>
             <MetaTag
-                resolvedUrl={defaultURL}
-                title="Login | Kaito Shop"
+                resolvedUrl={`${defaultURL}/login`}
+                title="Login"
                 description={defaultDescription}
                 content={defaultContent}
                 thumbnail={defaultThumbnail}
                 keywords={defaultKeyword}
                 isDefault
             />
+
             <LoginRegister
                 title="Chào mừng trở lại !"
                 description="Đăng nhập để tiếp tục mua sắm"

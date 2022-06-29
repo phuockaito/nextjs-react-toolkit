@@ -78,8 +78,8 @@ const Register = () => {
     return (
         <React.Fragment>
             <MetaTag
-                resolvedUrl={defaultURL}
-                title="Register | Kaito Shop"
+                resolvedUrl={`${defaultURL}/register`}
+                title="Register"
                 description={defaultDescription}
                 content={defaultContent}
                 thumbnail={defaultThumbnail}
