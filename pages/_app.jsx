@@ -9,6 +9,7 @@ import { AppWrapper } from "@/context";
 import "antd/dist/antd.css";
 import "../styles/tailwind.css";
 import "../styles/globals.css";
+import Script from "next/script";
 
 function MyApp({ Component, pageProps }) {
     React.useEffect(() => {
@@ -29,7 +30,30 @@ function MyApp({ Component, pageProps }) {
                     shouldRetryOnError: false,
                 }}
             >
-                <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
+                <div>
+                    <Script
+                        data-ad-client="ca-pub-8244019655482411"
+                        async
+                        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+                    ></Script>
+                    <Script
+                        strategy={"afterInteractive"}
+                        src={`https://www.googletagmanager.com/gtag/js?id=G-7L4JFE1MWD`}
+                    />
+                    <Script
+                        id={"google-analytics"}
+                        strategy={"afterInteractive"}
+                        dangerouslySetInnerHTML={{
+                            __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', 'G-7L4JFE1MWD');
+                        `,
+                        }}
+                    />
+                    <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
+                </div>
             </SWRConfig>
         </React.Fragment>
     );

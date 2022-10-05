@@ -75,5 +75,6 @@ export const getStaticProps = async () => {
                 numReviews: item.numReviews,
             })),
         },
+        revalidate: 10,
     };
 };

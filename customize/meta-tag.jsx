@@ -10,47 +10,33 @@ export const MetaTag = ({
     content,
     thumbnail = "https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png",
     keywords,
-    shortcutIcon,
     resolvedUrl,
     isDefault = false,
 }) => {
     return (
         <Head>
             <meta name="description" content={content} />
-            <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1"
-            />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta name="theme-color" content="#000000" />
             <link
                 rel="shortcut icon"
                 type="image/x-icon"
                 href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png"
             />
-
-            <link rel="apple-touch-icon" href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png" />
-            <link rel="icon" href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png" />
+            <link
+                rel="apple-touch-icon"
+                href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png"
+            />
+            <link
+                rel="icon"
+                href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png"
+            />
             <meta name="google-site-verification" content="TtFAyDDDG8SbHTN2DdFY7PGvCxF5gDM3pgnXwMOPRP8" />
-            <meta
-                name="robots"
-                content={isDefault ? title : `${title} - ${nameUrl}`}
-            />
-            <meta
-                name="googlebot"
-                content={isDefault ? title : `${title} - ${nameUrl}`}
-            />
-            <meta
-                name="robots"
-                content={`max-snippet: ${
-                    isDefault ? title : `${title} - ${nameUrl}`
-                }`}
-            />
-
+            <meta name="robots" content={isDefault ? title : `${title} - ${nameUrl}`} />
+            <meta name="googlebot" content={isDefault ? title : `${title} - ${nameUrl}`} />
+            <meta name="robots" content={`max-snippet: ${isDefault ? title : `${title} - ${nameUrl}`}`} />
             <meta name="keywords" content={keywords} />
-            <meta
-                name={isDefault ? title : `${title} - ${nameUrl}`}
-                content="150 words"
-            />
+            <meta name={isDefault ? title : `${title} - ${nameUrl}`} content="150 words" />
             <meta name="subject" content={content} />
             <meta name="language" content="VN" />
             <meta property="og:image:secure_url" content={thumbnail} />
@@ -65,9 +51,7 @@ export const MetaTag = ({
             />
             <meta name="mobile-web-app-capable" content="yes" />
             <meta name="apple-mobile-web-app-capable" content="yes" />
-
             <title>{isDefault ? title : `${title} - ${nameUrl}`}</title>
-
             {/* Open Graph / Facebook */}
             <meta name="og:type" content="Clean energy" />
             <meta property="og:url" content={resolvedUrl} />

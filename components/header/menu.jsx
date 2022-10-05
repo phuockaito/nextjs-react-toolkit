@@ -23,9 +23,9 @@ export const Menu = () => {
     if (!data || error) {
         return (
             <header className="sticky top-0 z-[5] h-20 border-b bg-white px-6 shadow-md">
-                <div className=" flex h-full items-center gap-4">
+                <div className="flex items-center h-full gap-4 ">
                     {[...new Array(5)].map((_, index) => (
-                        <div key={index.toString()} className="h-5 w-28 animate-pulse rounded bg-slate-400" />
+                        <div key={index.toString()} className="h-5 rounded w-28 animate-pulse bg-slate-400" />
                     ))}
                 </div>
             </header>
@@ -41,10 +41,10 @@ export const Menu = () => {
                             <div className="block xl:hidden">
                                 <AlignRightOutlined onClick={() => setVisible(true)} />
                             </div>
-                            <LinkHref href="/" className="mr-2 flex">
-                                <Image src={IconLogo.src} alt="" className="h-14 w-40" />
+                            <LinkHref href="/" className="flex mr-2">
+                                <Image src={IconLogo.src} alt="" className="w-40 h-14" />
                             </LinkHref>
-                            <ul className="menu hidden xl:flex">
+                            <ul className="hidden menu xl:flex">
                                 <li>
                                     <Link href="/" rel="canonical">
                                         <a className="menu-item font-normal text-[#6e6d7a] hover:text-[#4058ff]">
@@ -55,7 +55,7 @@ export const Menu = () => {
                                 {Object.entries(data).map((menu) => (
                                     <li key={menu[0]} className="menu-item">
                                         <LinkHref href={`/trademark/${menu[0].toLowerCase()}`}>{menu[0]}</LinkHref>
-                                        <div className="site-nav-hover-menu absolute">
+                                        <div className="absolute site-nav-hover-menu">
                                             <ul className="sub-menu">
                                                 {menu[1].map((item) => (
                                                     <li key={item}>
@@ -83,19 +83,21 @@ export const Menu = () => {
                             {profile ? (
                                 <Profile {...profile} />
                             ) : (
-                                <div className="flex items-center gap-4">
-                                    <LinkHref
-                                        className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-white hover:bg-white hover:text-[#4058ff]"
-                                        href="/login"
-                                    >
-                                        Login
-                                    </LinkHref>
-                                    <LinkHref
-                                        className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-white hover:bg-white hover:text-[#4058ff]"
-                                        href="/register"
-                                    >
-                                        Sign up
-                                    </LinkHref>
+                                <div className="hidden xl:flex">
+                                    <div className="flex items-center gap-4">
+                                        <LinkHref
+                                            className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-white hover:bg-white hover:text-[#4058ff]"
+                                            href="/login"
+                                        >
+                                            Login
+                                        </LinkHref>
+                                        <LinkHref
+                                            className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-white hover:bg-white hover:text-[#4058ff]"
+                                            href="/register"
+                                        >
+                                            Sign up
+                                        </LinkHref>
+                                    </div>
                                 </div>
                             )}
                         </div>
@@ -109,10 +111,25 @@ export const Menu = () => {
                 visible={visible}
                 bodyStyle={{ padding: 0 }}
             >
+                <div className="grid justify-between grid-cols-2 gap-4 px-2 pt-4">
+                    <LinkHref
+                        className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-center text-white hover:bg-white hover:text-[#4058ff]"
+                        href="/login"
+                    >
+                        Login
+                    </LinkHref>
+                    <LinkHref
+                        className="rounded-[0.25rem] border border-[#4058ff] bg-[#4058ff] px-6 py-2 text-center text-white hover:bg-white hover:text-[#4058ff]"
+                        href="/register"
+                    >
+                        Sign up
+                    </LinkHref>
+                </div>
+
                 <ul className="menu-moblie">
                     <li className="item" onClick={() => setVisible(false)}>
                         <Link href="/" rel="canonical">
-                            <a className="menu-item font-normal text-[#6e6d7a] hover:text-[#4058ff]">Home</a>
+                            <a className="pt-4 font-normal text-[#6e6d7a] hover:text-[#4058ff]">Home</a>
                         </Link>
                     </li>
                     {Object.entries(data).map((menu) => (

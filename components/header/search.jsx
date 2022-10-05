@@ -9,7 +9,7 @@ export const Search = () => {
     const { register, handleSubmit } = useForm();
 
     const submitSearch = ({ search }) => {
-        router.push(`/search/${search}`);
+        router.push(`/search/${search.replace(/\s/g, "-")}`);
     };
 
     return (

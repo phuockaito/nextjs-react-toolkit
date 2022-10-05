@@ -14,6 +14,7 @@ import { WrapperComment, Header, SuggestedProduct, FormComment } from "@/compone
 import { AiFillStar } from "react-icons/ai";
 import { BiChevronRight } from "react-icons/bi";
 import { useAuth, useCart } from "@/hooks";
+import { defaultURL } from "@/const";
 
 const DetailId = ({ data, id, suggested_keyword }) => {
     const router = useRouter();
@@ -33,6 +34,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
     return (
         <React.Fragment>
             <MetaTag
+                resolvedUrl={`${defaultURL}/detail/${id}`}
                 title={`${data.name.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}`}
                 description={`${data.name} | ${data.collections}`}
                 content={`${data.name}`}
@@ -60,7 +62,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
             <Section className="flex flex-col gap-3 p-5 lg:flex-row ">
                 <div className="basis-[60%]">
                     <div className="flex gap-4">
-                        <div className="flex flex-1 flex-col gap-2">
+                        <div className="flex flex-col flex-1 gap-2">
                             <div>
                                 <h3 className="mb-2 text-xl font-semibold capitalize text-[#212427]">
                                     Thông tin sản phẩm
@@ -99,26 +101,26 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                             <Image
                                 onClick={() => setPoster(index)}
                                 key={image.id}
-                                className="flex h-20 w-20 cursor-pointer"
+                                className="flex w-20 h-20 cursor-pointer"
                                 alt={image.name}
                                 src={image.url}
                             />
                         ))}
                     </div>
-                    <div className="flex w-full flex-col gap-3">
-                        <div className="flex w-full flex-col items-center">
+                    <div className="flex flex-col w-full gap-3">
+                        <div className="flex flex-col items-center w-full">
                             <h1 className="mb-4 w-full rounded bg-[#4058ff] p-2 text-center text-xl font-semibold capitalize text-white">
                                 {data.name}
                             </h1>
-                            <div className="flex w-full items-center justify-center">
-                                <div className="flex basis-11/12 flex-col items-center justify-center">
+                            <div className="flex items-center justify-center w-full">
+                                <div className="flex flex-col items-center justify-center basis-11/12">
                                     <Image
                                         alt={data.poster[poster].url}
                                         className="h-[320px] w-[320px]"
                                         src={data.poster[poster].url}
                                     />
                                 </div>
-                                <div className="flex basis-1 flex-col gap-2">
+                                <div className="flex flex-col gap-2 basis-1">
                                     <h5>Size</h5>
                                     {data.size.map((sz) => (
                                         <p
@@ -135,7 +137,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="flex w-full items-center justify-between">
+                        <div className="flex items-center justify-between w-full">
                             <h3 className=" flex gap-1 font-semibold text-[#212427]">
                                 Price:
                                 <span className="text-[red]">
@@ -168,7 +170,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                                 Add to card
                             </button>
                         </div>
-                        <div className="flex w-full place-items-center gap-2 divide-x-2">
+                        <div className="flex w-full gap-2 divide-x-2 place-items-center">
                             <span className="basis-4/12 text-center text-[0.9rem] text-slate-600">
                                 {data.numReviews > 0 ? `${data.numReviews} đánh giá` : "Chưa có đánh giá"}
                             </span>
@@ -177,7 +179,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                                     ? `${dataComment.length} phản hồi`
                                     : "Chưa có phản hồi"}
                             </span>
-                            <div className="flex basis-4/12 items-center justify-center gap-1 text-center">
+                            <div className="flex items-center justify-center gap-1 text-center basis-4/12">
                                 <AiFillStar className="text-[#fadb14]" />
                                 <p className="flex gap-1 text-[0.9rem] text-slate-600">
                                     {dataComment?.reviewRating > 0 ? dataComment.reviewRating.toFixed(1) : 0}
@@ -219,7 +221,7 @@ export const getStaticProps = async (context) => {
             suggested_keyword: product.key,
             id: params.id,
         },
-        revalidate: 5,
+        revalidate: 10,
     };
 };
 

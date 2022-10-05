@@ -7,11 +7,12 @@ import { MetaTag } from "@/customize";
 import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const Trademark = ({ dataType, title, type, page, pagination, sort_price }) => {
+    const titlePage = title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
     return (
         <React.Fragment>
             <MetaTag
-                resolvedUrl={defaultURL}
-                title={title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
+                resolvedUrl={`${defaultURL}/trademark/${titlePage.replace(/\s/g, "-")}`}
+                title={titlePage}
                 description={defaultDescription}
                 content={defaultContent}
                 thumbnail={defaultThumbnail}

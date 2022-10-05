@@ -8,11 +8,12 @@ import { Pagination, WrapperCard } from "@/layout";
 import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const ProductType = ({ dataType, title, type, page, pagination, sort_price }) => {
+    const titlePage = title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
     return (
         <React.Fragment>
             <MetaTag
-                resolvedUrl={defaultURL}
-                title={title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
+                resolvedUrl={`${defaultURL}/product/${titlePage.replace(/\s/g, "-")}`}
+                title={titlePage}
                 description={defaultDescription}
                 content={defaultContent}
                 thumbnail={defaultThumbnail}

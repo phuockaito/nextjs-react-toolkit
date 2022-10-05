@@ -7,10 +7,11 @@ import { MetaTag } from "@/customize";
 import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 const Search = ({ dataSearch, keyword, page, pagination }) => {
+    const query = keyword.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
     return (
         <React.Fragment>
             <MetaTag
-                resolvedUrl={defaultURL}
+                resolvedUrl={`${defaultURL}/search/${query.replace(/\s/g, "-")}`}
                 title={keyword.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
                 description={defaultDescription}
                 content={defaultContent}
@@ -52,7 +53,7 @@ export const getServerSideProps = async (context) => {
 
     const { data, lengthProducts } = await apiSearch.search({
         items: limit,
-        keyword: query.keyword,
+        keyword: query.keyword.replace(/-/g, " "),
         page: page,
     });
     const pagination = Number(Math.floor(lengthProducts / limit)) + (lengthProducts % limit == 0 ? 0 : 1);
