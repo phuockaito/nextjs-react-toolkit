@@ -31,7 +31,7 @@ export const MetaTag = ({
                 rel="icon"
                 href="https://res.cloudinary.com/dycmdfgj3/image/upload/v1654409997/Screenshot_2022-06-05_131943_cwcfei.png"
             />
-            <meta name="google-site-verification" content="TtFAyDDDG8SbHTN2DdFY7PGvCxF5gDM3pgnXwMOPRP8" />
+            <meta name="google-site-verification" content="eb8Z8mWUYBBvjnHvbGlfiedQNaXUkMm667zJ5OfzY68" />
             <meta name="robots" content={isDefault ? title : `${title} - ${nameUrl}`} />
             <meta name="googlebot" content={isDefault ? title : `${title} - ${nameUrl}`} />
             <meta name="robots" content={`max-snippet: ${isDefault ? title : `${title} - ${nameUrl}`}`} />

@@ -3,7 +3,9 @@ import NoSSR from "react-no-ssr";
 
 import { useCart } from "@/hooks";
 import { Header, Product, FormPayment } from "@/components";
-import { Section, Button } from "@/layout";
+import { Section } from "@/layout";
+import { MetaTag } from "@/customize";
+import { defaultContent, defaultDescription, defaultKeyword, defaultThumbnail, defaultURL } from "@/const";
 
 const Cart = () => {
     const [district, setDistrict] = React.useState(null);
@@ -25,6 +27,15 @@ const Cart = () => {
 
     return (
         <React.Fragment>
+            <MetaTag
+                resolvedUrl={defaultURL}
+                title="Giỏ hàng"
+                description={defaultDescription}
+                content={defaultContent}
+                thumbnail={defaultThumbnail}
+                keywords={defaultKeyword}
+                isDefault
+            />
             <NoSSR>
                 {storeCart.dataCart?.length > 0 ? (
                     <div className="flex flex-col-reverse gap-4 px-4 sm:flex-row">

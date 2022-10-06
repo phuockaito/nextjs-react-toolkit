@@ -39,7 +39,6 @@ const Register = () => {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm({
         resolver: yupResolver(schema),
@@ -94,7 +93,7 @@ const Register = () => {
                 description_page="Bạn đã có tài khoản đăng nhập ngay ?"
             >
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="relative flex w-full flex-col gap-3">
+                    <div className="relative flex flex-col w-full gap-3">
                         <Input
                             size="md"
                             type="text"

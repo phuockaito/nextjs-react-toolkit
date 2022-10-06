@@ -5,8 +5,9 @@ import NumberFormat from "react-number-format";
 
 import { Header } from "@/components";
 import { apiCart } from "@/api-client";
-import { Image, LinkHref } from "@/customize";
+import { Image, LinkHref, MetaTag } from "@/customize";
 import { VscTrash } from "react-icons/vsc";
+import { defaultContent, defaultDescription, defaultKeyword, defaultThumbnail, defaultURL } from "@/const";
 
 const HistoryCart = () => {
     const { data, mutate } = useSWR("/history-cart", () => apiCart.getCart());
@@ -20,6 +21,15 @@ const HistoryCart = () => {
 
     return (
         <React.Fragment>
+            <MetaTag
+                resolvedUrl={defaultURL}
+                title={"Lịch sử mua hàng"}
+                description={defaultDescription}
+                content={defaultContent}
+                thumbnail={defaultThumbnail}
+                keywords={defaultKeyword}
+                isDefault
+            />
             <NoSSR>
                 {data.cart.length > 0 ? (
                     <div className="grid divide-y divide-[#eaeaea]">
@@ -33,10 +43,10 @@ const HistoryCart = () => {
                                                 className="h-[50px] w-[50px]"
                                                 alt={info.product.name}
                                             />
-                                            <div className="flex w-full flex-1 flex-col">
+                                            <div className="flex flex-col flex-1 w-full">
                                                 <div className="flex justify-between gap-2">
                                                     <LinkHref href={`/detail/${info.product._id}`}>
-                                                        <h3 className="capitalize text-gray-900">
+                                                        <h3 className="text-gray-900 capitalize">
                                                             {info.product.name}
                                                         </h3>
                                                     </LinkHref>
