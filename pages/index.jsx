@@ -1,15 +1,11 @@
-import { useSelector } from "react-redux";
-
 import { apiProduct } from "@/api-client";
 import { MetaTag } from "@/customize";
 import { Header } from "@/components";
 import { WrapperCard } from "@/layout";
-import { selectProfile } from "@/selector";
 
 import { defaultURL, defaultTile, defaultDescription, defaultContent, defaultThumbnail, defaultKeyword } from "const";
 
 export default function Home({ productNew, productType, productSlider }) {
-    const profile = useSelector(selectProfile);
     return (
         <>
             <MetaTag
@@ -30,7 +26,9 @@ export default function Home({ productNew, productType, productSlider }) {
 
 Home.getLayout = (page) => <Header>{page}</Header>;
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async (context) => {
+    context.res.setHeader("Cache-Control", "s-maxage=5,stale-while-revalidate=5");
+
     const { product } = await apiProduct.getProduct({ limit: 8 });
 
     const product_type = await apiProduct.getProductType({
@@ -75,6 +73,5 @@ export const getStaticProps = async () => {
                 numReviews: item.numReviews,
             })),
         },
-        revalidate: 10,
     };
 };

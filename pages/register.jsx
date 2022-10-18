@@ -65,7 +65,6 @@ const Register = () => {
             await handleRegister(data);
             router.replace("/");
         } catch (error) {
-            console.log("error", error);
             setInfoLogin({
                 message: error.response?.data?.message,
                 loading: false,

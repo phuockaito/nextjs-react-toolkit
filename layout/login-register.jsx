@@ -26,21 +26,20 @@ export const LoginRegister = ({
         try {
             await handleGoogleLogin({ tokenId: tokenId });
         } catch (error) {
-            console.log("error", error);
             setLoading(false);
         }
     };
     return (
         <div className="flex min-h-screen overflow-y-hidden">
             <div className="relative basis-9/12 bg-[#d4dbf9]">
-                <div className="absolute left-0 top-0">
-                    <Image src={BackgroundLogin.src} alt="" className="h-full w-full" />
+                <div className="absolute top-0 left-0">
+                    <Image src={BackgroundLogin.src} alt="" className="w-full h-full" />
                 </div>
             </div>
-            <div className="basis-3/12 bg-white p-12">
+            <div className="p-12 bg-white basis-3/12">
                 <div className="flex flex-col">
-                    <LinkHref href="/" className="mb-6 flex justify-center">
-                        <Image src={IconLogo.src} alt="" className="h-14 w-40" />
+                    <LinkHref href="/" className="flex justify-center mb-6">
+                        <Image src={IconLogo.src} alt="" className="w-40 h-14" />
                     </LinkHref>
                     <div className="my-20">
                         {title && <h6 className="mb-2 text-[1.015625rem] text-[#556ee6]">{title}</h6>}
@@ -68,7 +67,7 @@ export const LoginRegister = ({
                                     <>
                                         {loading ? (
                                             <div className="flex h-8 w-8 cursor-pointer items-center justify-center rounded-full bg-[#f46a6a]">
-                                                <AiOutlineLoading className="animate-spin text-white" />
+                                                <AiOutlineLoading className="text-white animate-spin" />
                                             </div>
                                         ) : (
                                             <div
