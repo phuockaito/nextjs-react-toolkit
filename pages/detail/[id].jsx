@@ -27,13 +27,12 @@ const DetailId = ({ data, id, suggested_keyword }) => {
     const { profile } = useAuth();
     const { handleAddToCartReducers } = useCart();
 
-    if (!data) return;
     const createMarkup = () => {
         return { __html: data.description };
     };
 
     return (
-        <>
+        <React.Fragment>
             <MetaTag
                 resolvedUrl={`${defaultURL}/detail/${id}`}
                 title={`${data.name.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}`}
@@ -206,22 +205,36 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                 />
                 <SuggestedProduct keyword={suggested_keyword} id={id} />
             </NoSSR>
-        </>
+        </React.Fragment>
     );
 };
 
 export default DetailId;
 DetailId.getLayout = (page) => <Header>{page}</Header>;
 
-export const getServerSideProps = async (context) => {
-    context.res.setHeader("Cache-Control", "s-maxage=5,stale-while-revalidate=5");
+export const getStaticProps = async (context) => {
     const { params } = context;
     const { product } = await apiProduct.getProductById(params.id);
+
+    if (!product) {
+        return {
+            notFound: true,
+        };
+    }
+
     return {
         props: {
             data: product,
             suggested_keyword: product.key,
             id: params.id,
         },
+        revalidate: 10,
+    };
+};
+
+export const getStaticPaths = async () => {
+    return {
+        paths: [],
+        fallback: "blocking",
     };
 };
