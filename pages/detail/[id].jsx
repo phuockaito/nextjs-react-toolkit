@@ -27,6 +27,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
     const { profile } = useAuth();
     const { handleAddToCartReducers } = useCart();
 
+    if (!data) return;
     const createMarkup = () => {
         return { __html: data.description };
     };
@@ -212,7 +213,8 @@ const DetailId = ({ data, id, suggested_keyword }) => {
 export default DetailId;
 DetailId.getLayout = (page) => <Header>{page}</Header>;
 
-export const getStaticProps = async (context) => {
+export const getServerSideProps = async (context) => {
+    context.res.setHeader("Cache-Control", "s-maxage=5,stale-while-revalidate=5");
     const { params } = context;
     const { product } = await apiProduct.getProductById(params.id);
     return {
@@ -221,13 +223,5 @@ export const getStaticProps = async (context) => {
             suggested_keyword: product.key,
             id: params.id,
         },
-        revalidate: 10,
-    };
-};
-
-export const getStaticPaths = async () => {
-    return {
-        paths: [],
-        fallback: "blocking",
     };
 };
