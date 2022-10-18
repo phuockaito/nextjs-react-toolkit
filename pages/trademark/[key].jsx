@@ -9,7 +9,7 @@ import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defau
 const Trademark = ({ dataType, title, type, page, pagination, sort_price }) => {
     const titlePage = title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={`${defaultURL}/trademark/${titlePage.replace(/\s/g, "-")}`}
                 title={titlePage}
@@ -38,7 +38,7 @@ const Trademark = ({ dataType, title, type, page, pagination, sort_price }) => {
                     sort_price={sort_price}
                 />
             </WrapperCard>
-        </React.Fragment>
+        </>
     );
 };
 

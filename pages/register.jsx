@@ -75,7 +75,7 @@ const Register = () => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={`${defaultURL}/register`}
                 title="Register"
@@ -162,7 +162,7 @@ const Register = () => {
                     </div>
                 </form>
             </LoginRegister>
-        </React.Fragment>
+        </>
     );
 };
 

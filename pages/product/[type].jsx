@@ -10,7 +10,7 @@ import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defau
 const ProductType = ({ dataType, title, type, page, pagination, sort_price }) => {
     const titlePage = title.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={`${defaultURL}/product/${titlePage.replace(/\s/g, "-")}`}
                 title={titlePage}
@@ -39,7 +39,7 @@ const ProductType = ({ dataType, title, type, page, pagination, sort_price }) =>
                     sort_price={sort_price}
                 />
             </WrapperCard>
-        </React.Fragment>
+        </>
     );
 };
 export default ProductType;

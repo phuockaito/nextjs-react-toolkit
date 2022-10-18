@@ -9,7 +9,7 @@ import { defaultURL, defaultDescription, defaultContent, defaultThumbnail, defau
 const Search = ({ dataSearch, keyword, page, pagination }) => {
     const query = keyword.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={`${defaultURL}/search/${query.replace(/\s/g, "-")}`}
                 title={keyword.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}
@@ -35,7 +35,7 @@ const Search = ({ dataSearch, keyword, page, pagination }) => {
                     url_page="keyword"
                 />
             </WrapperCard>
-        </React.Fragment>
+        </>
     );
 };
 

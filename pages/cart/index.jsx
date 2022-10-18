@@ -26,7 +26,7 @@ const Cart = () => {
     });
 
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={defaultURL}
                 title="Giỏ hàng"
@@ -64,7 +64,7 @@ const Cart = () => {
                     </Section>
                 )}
             </NoSSR>
-        </React.Fragment>
+        </>
     );
 };
 

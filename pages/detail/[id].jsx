@@ -32,7 +32,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={`${defaultURL}/detail/${id}`}
                 title={`${data.name.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()))}`}
@@ -205,7 +205,7 @@ const DetailId = ({ data, id, suggested_keyword }) => {
                 />
                 <SuggestedProduct keyword={suggested_keyword} id={id} />
             </NoSSR>
-        </React.Fragment>
+        </>
     );
 };
 
@@ -228,6 +228,6 @@ export const getStaticProps = async (context) => {
 export const getStaticPaths = async () => {
     return {
         paths: [],
-        fallback: false,
+        fallback: "blocking",
     };
 };

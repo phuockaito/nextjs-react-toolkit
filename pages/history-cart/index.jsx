@@ -20,7 +20,7 @@ const HistoryCart = () => {
     };
 
     return (
-        <React.Fragment>
+        <>
             <MetaTag
                 resolvedUrl={defaultURL}
                 title={"Lịch sử mua hàng"}
@@ -105,7 +105,7 @@ const HistoryCart = () => {
                     </div>
                 )}
             </NoSSR>
-        </React.Fragment>
+        </>
     );
 };
 

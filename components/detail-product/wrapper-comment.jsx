@@ -55,7 +55,7 @@ export const WrapperComment = ({ dataComment, _page_comment, id_product, mutate 
     };
 
     return (
-        <React.Fragment>
+        <>
             <NoSSR>
                 <Section>
                     <h6 className="text-xl font-semibold capitalize text-[#212427]">Phản hồi ({dataComment.length})</h6>
@@ -94,6 +94,6 @@ export const WrapperComment = ({ dataComment, _page_comment, id_product, mutate 
                     </div>
                 </Section>
             </NoSSR>
-        </React.Fragment>
+        </>
     );
 };

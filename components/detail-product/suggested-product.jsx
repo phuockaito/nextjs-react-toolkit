@@ -22,8 +22,8 @@ export const SuggestedProduct = ({ keyword, id }) => {
 
     const filterData = dataSuggested?.data.filter((item) => item._id !== id);
     return (
-        <React.Fragment>
+        <>
             <WrapperCard data={filterData} title="Sản phẩm tương tự" />
-        </React.Fragment>
+        </>
     );
 };

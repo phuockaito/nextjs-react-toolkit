@@ -22,7 +22,7 @@ function MyApp({ Component, pageProps }) {
 
     const getLayout = Component.getLayout || ((page) => page);
     return (
-        <React.Fragment>
+        <>
             <NextNProgress height={6} stopDelayMs={0} color="#3069fe" />
             <SWRConfig
                 value={{
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }) {
                     <AppWrapper>{getLayout(<Component {...pageProps} />)}</AppWrapper>
                 </div>
             </SWRConfig>
-        </React.Fragment>
+        </>
     );
 }
 

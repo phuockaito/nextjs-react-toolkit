@@ -5,11 +5,11 @@ import { Menu } from "./menu";
 
 export const Header = ({ children, className = "max-w-[1200px] mx-auto p-4 grid gap-5" }) => {
     return (
-        <React.Fragment>
+        <>
             <NoSSR>
                 <Menu />
             </NoSSR>
             <div className={className}>{children}</div>
-        </React.Fragment>
+        </>
     );
 };
