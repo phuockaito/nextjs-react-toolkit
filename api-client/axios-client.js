@@ -7,8 +7,7 @@ const hasWindow = () => typeof window === "object";
 
 
 export const axiosClient = axios.create({
-    baseURL: process.env.NODE_ENV !== 'production' ? publicRuntimeConfig.API_URL + "/api" : '/api',
-    // baseURL: hasWindow() ? "/api" : publicRuntimeConfig.API_URL + "/api",
+    baseURL: hasWindow() ? "/api" : publicRuntimeConfig.API_URL + "/api",
     headers: {
         "Content-Type": "application/json",
     },
