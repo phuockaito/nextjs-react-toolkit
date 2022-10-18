@@ -225,3 +225,23 @@ export const getServerSideProps = async (context) => {
         },
     };
 };
+
+// export const getStaticProps = async (context) => {
+//     const { params } = context;
+//     const { product } = await apiProduct.getProductById(params.id);
+//     return {
+//         props: {
+//             data: product,
+//             suggested_keyword: product.key,
+//             id: params.id,
+//         },
+//         revalidate: 10,
+//     };
+// };
+
+// export const getStaticPaths = async () => {
+//     return {
+//         paths: [],
+//         fallback: "blocking",
+//     };
+// };

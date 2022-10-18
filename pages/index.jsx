@@ -25,7 +25,6 @@ export default function Home({ productNew, productType, productSlider }) {
 }
 
 Home.getLayout = (page) => <Header>{page}</Header>;
-
 export const getServerSideProps = async (context) => {
     context.res.setHeader("Cache-Control", "s-maxage=5,stale-while-revalidate=5");
 
@@ -75,3 +74,52 @@ export const getServerSideProps = async (context) => {
         },
     };
 };
+
+// export const getStaticProps = async () => {
+//     const { product } = await apiProduct.getProduct({ limit: 8 });
+
+//     const product_type = await apiProduct.getProductType({
+//         items: 8,
+//         name: "puma",
+//         page: 1,
+//         sort_price: 0,
+//     });
+//     const product_slider = await apiProduct.getProductType({
+//         limit: 8,
+//         name: "converse",
+//         sort_price: 0,
+//     });
+
+//     return {
+//         props: {
+//             productNew: product.map((item) => ({
+//                 _id: item._id,
+//                 poster: item.poster,
+//                 price: item.price,
+//                 collections: item.collections,
+//                 name: item.name,
+//                 rating: item.rating,
+//                 numReviews: item.numReviews,
+//             })),
+//             productType: product_type.data.map((item) => ({
+//                 _id: item._id,
+//                 poster: item.poster,
+//                 price: item.price,
+//                 collections: item.collections,
+//                 name: item.name,
+//                 rating: item.rating,
+//                 numReviews: item.numReviews,
+//             })),
+//             productSlider: product_slider.data.map((item) => ({
+//                 _id: item._id,
+//                 poster: item.poster,
+//                 price: item.price,
+//                 collections: item.collections,
+//                 name: item.name,
+//                 rating: item.rating,
+//                 numReviews: item.numReviews,
+//             })),
+//         },
+//         revalidate: 10,
+//     };
+// };
