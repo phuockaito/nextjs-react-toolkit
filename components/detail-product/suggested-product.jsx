@@ -1,7 +1,7 @@
 import * as React from "react";
 import useSWR from "swr";
 
-import { WrapperCard, Section } from "@/layout";
+import { WrapperCard } from "@/layout";
 import { apiProduct } from "@/api-client";
 
 export const SuggestedProduct = ({ keyword, id }) => {
